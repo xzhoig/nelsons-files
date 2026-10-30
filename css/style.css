@@ -1,0 +1,918 @@
+/* =========================================================
+   CIS222 / CIS282 Individual Assignment - e-Portfolio
+   "Nelson's Files" - Chan Kai Yip Nelson
+   Design idea: every page is a coloured archive folder with
+   paper sheets, index cards, sticky notes and stamps on a
+   dark desk. Everything is made with CSS only.
+   ========================================================= */
+
+/* ---------- Colours of the folders ---------- */
+:root {
+  --desk: #1b1b1f;
+  --paper: #f7f3e8;
+  --ink: #1f1f1f;
+  --blue: #2f6fde;
+  --yellow: #f2c230;
+  --red: #e0483e;
+  --purple: #7b5cd6;
+  --green: #3aa76d;
+  --orange: #f08a24;
+  --kraft: #c9a66b;
+  --folder: var(--kraft);
+}
+
+/* Each page uses a different folder colour */
+body.folder-blue   { --folder: var(--blue); }
+body.folder-yellow { --folder: var(--yellow); }
+body.folder-red    { --folder: var(--red); }
+body.folder-purple { --folder: var(--purple); }
+body.folder-green  { --folder: var(--green); }
+body.folder-orange { --folder: var(--orange); }
+body.folder-kraft  { --folder: var(--kraft); }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--desk);
+  /* fine lines like a wooden / leather desk */
+  background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 6px);
+}
+
+/* Typewriter font for labels */
+.mono,
+.kicker,
+.stamp,
+.folder-label,
+.section h2,
+table th,
+.tag,
+.navbar ul li a,
+.footer {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: relative;
+  padding: 45px 30px 30px 30px;
+  color: #f2efe6;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.header .kicker {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--folder);
+}
+.header h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 8px 0;
+}
+.header p {
+  color: #bdb8ab;
+}
+
+/* Rubber stamp */
+.stamp {
+  display: inline-block;
+  border: 3px solid var(--red);
+  color: var(--red);
+  padding: 4px 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transform: rotate(-6deg);
+  opacity: 0.85;
+  border-radius: 4px;
+}
+.header .stamp {
+  position: absolute;
+  right: 30px;
+  top: 40px;
+}
+
+/* ---------- Navigation: folder tabs ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 20px 0 20px;
+  background-color: var(--desk);
+}
+.navbar .logo {
+  white-space: nowrap;
+  color: #f2efe6;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.navbar ul {
+  display: flex;
+  align-items: flex-end;
+  list-style-type: none;
+}
+.navbar ul li a {
+  display: block;
+  white-space: nowrap;
+  padding: 8px 12px;
+  margin-left: 3px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px 10px 0 0;
+  transform: translateY(6px);
+  transition: transform 0.2s;
+}
+.navbar ul li a:hover {
+  transform: translateY(0);
+}
+.navbar ul li a.current {
+  transform: translateY(0);
+  padding-top: 12px;
+  box-shadow: 0 -3px 0 rgba(255, 255, 255, 0.6) inset;
+}
+/* tab colours follow the order of the menu */
+.navbar ul li:nth-child(1) a { background-color: var(--kraft); }
+.navbar ul li:nth-child(2) a { background-color: var(--blue); color: white; }
+.navbar ul li:nth-child(3) a { background-color: var(--yellow); }
+.navbar ul li:nth-child(4) a { background-color: var(--red); color: white; }
+.navbar ul li:nth-child(5) a { background-color: var(--purple); color: white; }
+.navbar ul li:nth-child(6) a { background-color: var(--green); color: white; }
+.navbar ul li:nth-child(7) a { background-color: var(--orange); }
+.navbar ul li:nth-child(8) a { background-color: #d9d4c7; }
+
+/* Hamburger menu button (only on small screens) */
+.menu-btn {
+  display: none;
+  background: none;
+  border: 2px solid #f2efe6;
+  border-radius: 5px;
+  color: #f2efe6;
+  font-size: 1.4rem;
+  padding: 2px 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* Theme button */
+.theme-btn {
+  background-color: #f2efe6;
+  color: var(--ink);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  margin: 0 0 10px 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  cursor: pointer;
+}
+.theme-btn:hover {
+  background-color: var(--yellow);
+}
+
+/* ---------- Folder ---------- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 40px 20px;
+}
+.folder {
+  position: relative;
+  background-color: var(--folder);
+  border-radius: 0 12px 12px 12px;
+  padding: 50px 45px 30px 45px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+.folder-label {
+  position: absolute;
+  top: 12px;
+  left: 45px;
+  background-color: var(--paper);
+  padding: 2px 14px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Paper sheet ---------- */
+.section {
+  counter-increment: sheet;
+  position: relative;
+  background-color: var(--paper);
+  padding: 35px 35px 25px 35px;
+  margin: 25px 0 35px 0;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+  transform: rotate(-0.4deg);
+  transition: transform 0.3s;
+}
+.folder { counter-reset: sheet; }
+.section:nth-of-type(even) {
+  transform: rotate(0.5deg);
+}
+.section:hover {
+  transform: rotate(0deg);
+}
+
+/* Paper clip on every sheet (CSS only) */
+.section::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  right: 40px;
+  width: 16px;
+  height: 46px;
+  border: 3px solid #8d8d8d;
+  border-radius: 10px;
+}
+.section::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 44px;
+  width: 8px;
+  height: 30px;
+  border: 3px solid #8d8d8d;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+}
+
+/* Sheet title like a typed label */
+.section h2 {
+  display: inline-block;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  padding: 3px 12px;
+  margin-bottom: 18px;
+}
+.section h2::before {
+  content: "No." counter(sheet, decimal-leading-zero) " / ";
+  color: var(--red);
+}
+.section h3 {
+  font-size: 1.15rem;
+}
+.section p {
+  margin-bottom: 12px;
+}
+.section ul,
+.section ol {
+  margin-left: 25px;
+  margin-bottom: 12px;
+}
+
+/* Sticky note */
+.sticky {
+  display: inline-block;
+  background-color: #fff27a;
+  padding: 12px 16px;
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+  font-size: 0.95rem;
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.25);
+  transform: rotate(2deg);
+  margin: 10px 0;
+}
+
+/* ---------- Two column layout ---------- */
+.row {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+.col-small {
+  width: 35%;
+  text-align: center;
+}
+.col-big {
+  width: 65%;
+}
+
+/* ---------- Profile photo as a black and white polaroid ---------- */
+.profile-photo {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  background-color: white;
+  padding: 10px 10px 40px 10px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  transform: rotate(-3deg);
+  filter: grayscale(100%);
+  cursor: pointer;
+  transition: transform 0.4s, filter 0.4s;
+}
+.profile-photo:hover {
+  transform: rotate(0deg) scale(1.05);
+  filter: grayscale(0%);
+}
+
+/* ---------- Buttons (styles from my Tutorial 6) ---------- */
+.button {
+  display: inline-block;
+  background-color: #0a0a23;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 18px;
+  min-width: 120px;
+  margin: 5px 5px 5px 0;
+  font-size: 0.95rem;
+  font-family: Georgia, "Times New Roman", serif;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0px 0px 2px 2px rgb(0, 0, 0, 0.2);
+}
+.button:hover {
+  background-color: #002ead;
+  transition: 0.7s;
+}
+.button:focus {
+  outline-color: transparent;
+  outline-style: solid;
+  box-shadow: 0 0 0 4px #5a01a7;
+}
+.button:active {
+  background-color: #ffbf00;
+  color: #0a0a23;
+}
+.button.orange {
+  background-color: var(--orange);
+  color: var(--ink);
+}
+.button.orange:hover {
+  background-color: #c86f17;
+  color: white;
+}
+a.button:link,
+a.button:visited {
+  color: #ffffff;
+}
+a.button.orange:link,
+a.button.orange:visited {
+  color: var(--ink);
+}
+
+/* Red call-to-action button (from my Tutorial 5) */
+.css-button {
+  display: inline-block;
+  background-color: #e74c3c;
+  color: white !important;
+  padding: 11px 22px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(231, 76, 60, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+.css-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(231, 76, 60, 0.6);
+}
+
+/* ---------- Index cards ---------- */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+.card {
+  flex: 1 1 260px;
+  background-color: #ffffff;
+  /* red top line and blue ruled lines like a real index card */
+  background-image:
+    linear-gradient(var(--red), var(--red)),
+    repeating-linear-gradient(transparent 0px, transparent 27px, #c9dcf2 27px, #c9dcf2 28px);
+  background-size: 100% 2px, 100% 100%;
+  background-position: 0 38px, 0 10px;
+  background-repeat: no-repeat, repeat;
+  padding: 10px 18px 18px 18px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:nth-child(odd) { transform: rotate(-1deg); }
+.card:nth-child(even) { transform: rotate(1deg); }
+.card:hover {
+  transform: translateY(-8px) rotate(0deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.card h3 {
+  font-size: 1.05rem;
+  height: 30px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.card i {
+  font-size: 26px;
+  color: var(--folder);
+  margin: 8px 0;
+}
+.card a {
+  text-decoration: none;
+}
+
+/* Photo with a paper clip (Projects page) */
+.clip-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 6px solid white;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  margin: 10px 0 12px 0;
+  filter: grayscale(60%);
+  transition: filter 0.4s;
+}
+.project-card:hover .clip-photo {
+  filter: grayscale(0%);
+}
+
+/* ---------- Data sheet tables ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
+table th {
+  background-color: var(--ink);
+  color: var(--paper);
+  padding: 8px 10px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+}
+table td {
+  padding: 9px 10px;
+  border-bottom: 1px dashed #9a9384;
+  vertical-align: top;
+}
+table td:first-child {
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: #6b6455;
+  width: 30%;
+}
+table tr:hover td {
+  background-color: #fff6c9;
+}
+
+/* ---------- Accordion (Experience page) ---------- */
+.accordion {
+  width: 100%;
+  background-color: var(--folder);
+  color: var(--ink);
+  padding: 14px 18px;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  text-align: left;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 14px;
+  transition: filter 0.3s;
+}
+.accordion:hover,
+.accordion.active {
+  filter: brightness(0.9);
+}
+.accordion .sign {
+  float: right;
+  font-family: "Courier New", Courier, monospace;
+}
+.panel {
+  display: none;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  border: 1px solid #d6d0c2;
+  border-top: none;
+}
+.panel.show {
+  display: block;
+}
+
+/* ---------- Skill bars ---------- */
+.skill {
+  margin-bottom: 15px;
+}
+.skill-name {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+.bar {
+  width: 100%;
+  height: 16px;
+  background-color: #e3dccb;
+  border: 1px solid #333333;
+}
+.bar-fill {
+  width: 0%;
+  height: 100%;
+  background-color: var(--folder);
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.25) 0px, rgba(255,255,255,0.25) 6px, transparent 6px, transparent 12px);
+  transition: width 1.5s;
+}
+
+/* ---------- Tabs (Skills page) ---------- */
+.tab-buttons button {
+  background-color: #e3dccb;
+  border: 1px solid #333333;
+  border-bottom: none;
+  padding: 8px 16px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+}
+.tab-buttons button:hover {
+  background-color: #fff6c9;
+}
+.tab-buttons button.active {
+  background-color: var(--folder);
+  color: white;
+}
+.tab-content {
+  display: none;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  padding: 18px;
+}
+.tab-content.show {
+  display: block;
+}
+
+/* ---------- Forms (style from my Tutorial 4) ---------- */
+.form-row {
+  margin-bottom: 15px;
+}
+.form-row label {
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+.form-row .inline {
+  display: inline;
+  text-transform: none;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  margin-right: 15px;
+}
+.reg-form input[type=text],
+.reg-form input[type=email],
+.reg-form input[type=tel],
+.reg-form select,
+.reg-form textarea {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-bottom: 2px solid #333333;
+  background-color: #eeeeee;
+  font-size: 0.95rem;
+  font-family: "Courier New", Courier, monospace;
+  color: #333333;
+}
+.reg-form input:focus,
+.reg-form select:focus,
+.reg-form textarea:focus {
+  outline: none;
+  background-color: #fff6c9;
+  border-bottom: 2px solid var(--folder);
+}
+.reg-form .two-cols {
+  display: flex;
+  gap: 15px;
+}
+.reg-form .two-cols .form-row {
+  width: 50%;
+}
+.phone-input {
+  display: flex;
+}
+.phone-input .country-code {
+  width: 70px !important;
+  text-align: center;
+  background-color: #e0e0e0 !important;
+}
+.submit-btn {
+  width: 100%;
+  background-color: #5cb85c;
+  color: white;
+  padding: 15px;
+  border: none;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+.submit-btn:hover {
+  background-color: #4cae4c;
+}
+.error {
+  color: var(--red);
+  font-size: 0.9rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* ---------- Lists ---------- */
+.service-list {
+  list-style-type: none;
+  margin-left: 0 !important;
+}
+.service-list li {
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  border-left: 5px solid var(--folder);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+.service-list li:hover {
+  transform: translateX(8px);
+}
+.service-list li i {
+  color: var(--green);
+  margin-right: 10px;
+}
+
+.sitemap ul {
+  list-style-type: none;
+  margin-left: 0;
+}
+.sitemap ul ul {
+  margin-left: 30px;
+  border-left: 2px dashed #9a9384;
+  padding-left: 15px;
+}
+.sitemap li {
+  margin: 8px 0;
+}
+.sitemap a {
+  font-weight: bold;
+}
+
+/* JavaScript demo results (Tutorial 7) */
+.demo-result {
+  min-height: 30px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff27a;
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tag {
+  display: inline-block;
+  background-color: var(--ink);
+  color: var(--paper);
+  font-size: 0.75rem;
+  padding: 1px 8px;
+  margin: 2px 2px 6px 0;
+  text-transform: uppercase;
+}
+
+audio {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* ---------- Links ---------- */
+a:link {
+  color: #1d4fa8;
+}
+a:visited {
+  color: #5a3d8c;
+}
+a:hover {
+  color: var(--red);
+}
+
+/* ---------- Home page: stack of folders ---------- */
+.folder-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 42px 18px;
+  margin-top: 35px;
+}
+.stack-folder {
+  position: relative;
+  flex: 1 1 300px;
+  min-height: 150px;
+  padding: 40px 20px 18px 20px;
+  border-radius: 0 10px 10px 10px;
+  color: var(--ink) !important;
+  text-decoration: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+.stack-folder::before {
+  content: attr(data-tab);
+  position: absolute;
+  top: -22px;
+  left: 0;
+  padding: 2px 14px;
+  border-radius: 8px 8px 0 0;
+  background-color: inherit;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+.stack-folder:hover {
+  transform: translateY(-10px) rotate(-1deg);
+}
+.stack-folder h3 {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+.stack-folder.f-blue   { background-color: var(--blue);   color: white !important; }
+.stack-folder.f-yellow { background-color: var(--yellow); }
+.stack-folder.f-red    { background-color: var(--red);    color: white !important; }
+.stack-folder.f-purple { background-color: var(--purple); color: white !important; }
+.stack-folder.f-green  { background-color: var(--green);  color: white !important; }
+.stack-folder.f-orange { background-color: var(--orange); }
+.stack-folder.f-grey   { background-color: #d9d4c7; }
+
+/* ---------- Blueprint mode (changed by JavaScript) ---------- */
+body.dark .section {
+  background-color: #1e4f8f;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 1px, transparent 1px, transparent 24px);
+  color: #eaf2ff;
+}
+body.dark .section h2 {
+  background-color: transparent;
+  border-color: #eaf2ff;
+  color: #eaf2ff;
+}
+body.dark .section a:link,
+body.dark .section a:visited {
+  color: #ffe58a;
+}
+body.dark table td:first-child {
+  color: #bcd3f5;
+}
+body.dark table tr:hover td {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+body.dark .card,
+body.dark .panel,
+body.dark .tab-content,
+body.dark .service-list li {
+  color: var(--ink);
+}
+body.dark .card a:link,
+body.dark .card a:visited,
+body.dark .panel a:link {
+  color: #1d4fa8;
+}
+body.dark a.button:link,
+body.dark a.button:visited {
+  color: #ffffff;
+}
+
+/* ---------- Back to top button ---------- */
+#topBtn {
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--folder);
+  color: var(--ink);
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+#topBtn:hover {
+  background-color: #f2efe6;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  color: #bdb8ab;
+  text-align: center;
+  padding: 25px 20px 35px 20px;
+  font-size: 0.9rem;
+}
+.footer a:link,
+.footer a:visited {
+  color: #f2efe6;
+}
+
+/* =========================================================
+   Responsive design: tablets and mobile phones
+   ========================================================= */
+@media screen and (max-width: 1050px) {
+  .menu-btn {
+    display: block;
+  }
+  .navbar {
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 15px;
+  }
+  .navbar .logo {
+    padding-bottom: 10px;
+  }
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .navbar ul.open {
+    display: flex;
+  }
+  .navbar ul li a {
+    transform: none;
+    margin: 0 0 4px 0;
+    border-radius: 8px;
+  }
+  .theme-btn {
+    margin: 5px 0;
+  }
+  .row {
+    flex-direction: column;
+  }
+  .col-small,
+  .col-big {
+    width: 100%;
+  }
+  .header .stamp {
+    position: static;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+  .folder {
+    padding: 45px 15px 15px 15px;
+  }
+  .folder-label {
+    left: 15px;
+  }
+  .section {
+    padding: 30px 18px 18px 18px;
+    transform: none !important;
+  }
+  .reg-form .two-cols {
+    flex-direction: column;
+    gap: 0;
+  }
+  .reg-form .two-cols .form-row {
+    width: 100%;
+  }
+}
+
+/* keep notes readable in blueprint mode */
+.sticky,
+.demo-result {
+  color: var(--ink);
+}
+/* project cards: no red line behind the photo */
+.project-card {
+  background-size: 0 0, 100% 100%;
+}

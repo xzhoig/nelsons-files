@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Simple Calculator</h1>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+var firstnumber = prompt("Please enter the first number.", "");
+var secondnumber = prompt("Please enter the second number.", "");
+var answer1 = parseInt(firstnumber, 10) + parseInt(secondnumber, 10);
+
+document.getElementById("demo1").innerHTML =
+  "The sum of " + firstnumber + " and " + secondnumber + " is " + answer1 + ".";
+
+var num1 = prompt("Please enter the first integer.", "");
+var num2 = prompt("Please enter the second integer.", "");
+var num3 = prompt("Please enter the third integer.", "");
+var answer2 = parseInt(num1, 10) + parseInt(num2, 10) + parseInt(num3, 10);
+
+document.getElementById("demo2").innerHTML =
+  "The sum of " + num1 + ", " + num2 + " and " + num3 + " is " + answer2 + ".";
+</script>
+
+</body>
+</html>

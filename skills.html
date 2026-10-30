@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
+<title>Skills | Chan Kai Yip Nelson</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<script src="js/main.js"></script>
+</head>
+<body class="folder-purple">
+
+<!-- Header -->
+<div class="header">
+  <span class="stamp">Case No. S25201381</span>
+  <p class="kicker">Nelson's Files &middot; File 04</p>
+  <h1>Skills</h1>
+  <p>What I can do &middot; try my JavaScript</p>
+</div>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
+  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+  <ul id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="personal.html">About Me</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html" class="current">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="other.html">More</a></li>
+    <li><a href="sitemap.html">Site Map</a></li>
+    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="folder">
+    <div class="folder-label">File 04 / Skills</div>
+
+  <div class="section">
+    <h2>Special Skills</h2>
+    <p>Click a tab to see my different kinds of skills.</p>
+
+    <div class="tab-buttons">
+      <button class="tab active" onclick="openTab('technical', this)">Technical Skills</button>
+      <button class="tab" onclick="openTab('soft', this)">Soft Skills</button>
+      <button class="tab" onclick="openTab('language', this)">Languages</button>
+    </div>
+
+    <div id="technical" class="tab-content show">
+        <div class="skill">
+          <div class="skill-name"><span>HTML</span><span>85%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="85"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>CSS</span><span>75%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="75"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>JavaScript</span><span>60%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="60"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>Python</span><span>55%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="55"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>Microsoft Office</span><span>80%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="80"></div></div>
+        </div>
+    </div>
+
+    <div id="soft" class="tab-content">
+        <div class="skill">
+          <div class="skill-name"><span>Communication</span><span>75%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="75"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>Teamwork</span><span>85%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="85"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>Problem Solving</span><span>70%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="70"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>Time Management</span><span>70%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="70"></div></div>
+        </div>
+    </div>
+
+    <div id="language" class="tab-content">
+        <div class="skill">
+          <div class="skill-name"><span>Cantonese</span><span>100%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="100"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>English</span><span>75%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="75"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name"><span>Mandarin</span><span>65%</span></div>
+          <div class="bar"><div class="bar-fill" data-percent="65"></div></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Try My JavaScript</h2>
+    <p>These small tools come from my Tutorial 7 exercises. Click a button and follow the questions.</p>
+    <button class="button" onclick="calculator()">Simple Calculator</button>
+    <button class="button" onclick="sumToN()">Add up 1 to n</button>
+    <button class="button" onclick="ageChecker()">Age Checker</button>
+    <button class="button" onclick="checkyear()">Leap Year Checker</button>
+    <p class="demo-result" id="jsResult">The answer will be shown here.</p>
+  </div>
+
+  <div class="section">
+    <h2>Tools I Use</h2>
+    <div class="cards">
+      <div class="card"><i class="fab fa-html5"></i><h3>HTML5</h3><p>Page structure, tables, lists and forms.</p></div>
+      <div class="card"><i class="fab fa-css3-alt"></i><h3>CSS3</h3><p>Layout, colours, buttons and responsive design.</p></div>
+      <div class="card"><i class="fab fa-js"></i><h3>JavaScript</h3><p>Events, DOM and form validation.</p></div>
+      <div class="card"><i class="fas fa-code"></i><h3>Notepad++</h3><p>My code editor for web pages.</p></div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- Back to top button -->
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+
+<!-- Footer -->
+<div class="footer">
+  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
+  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+</div>
+
+<script>
+// Fill the skill bars with animation
+function fillBars(tabId) {
+  var bars = document.getElementById(tabId).getElementsByClassName("bar-fill");
+  for (var i = 0; i < bars.length; i++) {
+    bars[i].style.width = bars[i].getAttribute("data-percent") + "%";
+  }
+}
+
+// Tabs: show one group of skills at a time
+function openTab(tabId, button) {
+  var contents = document.getElementsByClassName("tab-content");
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].classList.remove("show");
+  }
+  var tabs = document.getElementsByClassName("tab");
+  for (var j = 0; j < tabs.length; j++) {
+    tabs[j].classList.remove("active");
+  }
+  document.getElementById(tabId).classList.add("show");
+  button.classList.add("active");
+  fillBars(tabId);
+}
+
+function pageLoad() {
+  fillBars("technical");
+}
+
+// ----- Tutorial 7 exercises -----
+function calculator() {
+  var firstnumber = prompt("Please enter the first number.", "");
+  var secondnumber = prompt("Please enter the second number.", "");
+  var answer = parseInt(firstnumber, 10) + parseInt(secondnumber, 10);
+  document.getElementById("jsResult").innerHTML =
+    "The sum of " + firstnumber + " and " + secondnumber + " is " + answer + ".";
+}
+
+function sumToN() {
+  var n = parseInt(prompt("Please enter a positive number n.", ""), 10);
+  var series = "";
+  var answer = 0;
+  for (var i = 1; i <= n; i++) {
+    series = series + i + ", ";
+    answer = answer + i;
+  }
+  document.getElementById("jsResult").innerHTML =
+    series + "<br><b>The sum of 1 to " + n + " is " + answer + "</b>";
+}
+
+function ageChecker() {
+  var age = parseInt(prompt("Please enter your age.", ""), 10);
+  if (age >= 18) {
+    document.getElementById("jsResult").innerHTML = "You are qualified to drive.";
+  } else {
+    document.getElementById("jsResult").innerHTML = "You are not qualified to drive.";
+  }
+}
+
+function checkyear() {
+  var Year = Number(prompt("Please enter the year.", ""));
+  if (Year % 4 == 0) {
+    if (Year % 100 == 0) {
+      if (Year % 400 == 0) {
+        document.getElementById("jsResult").innerHTML = Year + " is a leap year.";
+      } else {
+        document.getElementById("jsResult").innerHTML = Year + " is a common year.";
+      }
+    } else {
+      document.getElementById("jsResult").innerHTML = Year + " is a leap year.";
+    }
+  } else {
+    document.getElementById("jsResult").innerHTML = Year + " is a common year.";
+  }
+}
+</script>
+</body>
+</html>

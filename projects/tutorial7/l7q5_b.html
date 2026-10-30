@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>HTML DOM Events</h1>
+<h2>Change background color by clicking a button</h2>
+
+<button onclick="changebackground('green')">Green</button>
+<button onclick="changebackground('yellow')">Yellow</button>
+<button onclick="changebackground('blue')">Blue</button>
+
+<p id="demo">Click a button to change the background color.</p>
+
+<script>
+function changebackground(color) {
+  document.body.style.backgroundColor = color;
+  document.getElementById("demo").innerHTML = "The background color is " + color;
+}
+</script>
+
+</body>
+</html>

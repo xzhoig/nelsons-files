@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
+<title>Experience | Chan Kai Yip Nelson</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<script src="js/main.js"></script>
+</head>
+<body class="folder-yellow">
+
+<!-- Header -->
+<div class="header">
+  <span class="stamp">Case No. S25201381</span>
+  <p class="kicker">Nelson's Files &middot; File 02</p>
+  <h1>Experience</h1>
+  <p>Jobs, volunteer work and course projects</p>
+</div>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
+  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+  <ul id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="personal.html">About Me</a></li>
+    <li><a href="experience.html" class="current">Experience</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="other.html">More</a></li>
+    <li><a href="sitemap.html">Site Map</a></li>
+    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="folder">
+    <div class="folder-label">File 02 / Experience</div>
+
+  <div class="section">
+    <h2>Working Experience</h2>
+    <p>Click on each item to see more details.</p>
+
+    <button class="accordion">2025 &mdash; Part-time Web Design Assistant (Freelance) <span class="sign">+</span></button>
+    <div class="panel">
+      <p><b>Period:</b> Jun 2025 &ndash; Aug 2025</p>
+      <ul>
+        <li>Helped small local shops to update their simple web pages.</li>
+        <li>Edited HTML and CSS to change layout, colours and pictures.</li>
+        <li>Learned how to talk with clients and understand their needs.</li>
+      </ul>
+    </div>
+
+    <button class="accordion">2024 &mdash; Retail Sales Assistant (Part-time) <span class="sign">+</span></button>
+    <div class="panel">
+      <p><b>Period:</b> Jul 2024 &ndash; May 2025</p>
+      <ul>
+        <li>Served customers and answered their questions about products.</li>
+        <li>Handled cash and arranged goods on the shelves.</li>
+        <li>Improved my communication skills and teamwork.</li>
+      </ul>
+    </div>
+
+    <button class="accordion">2024 &mdash; Volunteer, Computer Class Helper <span class="sign">+</span></button>
+    <div class="panel">
+      <p><b>Period:</b> 2024</p>
+      <ul>
+        <li>Taught elderly people how to use smartphones and send messages.</li>
+        <li>Learned to explain technical ideas in a simple way.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Course Projects</h2>
+    <table>
+      <tr><th>Project</th><th>What I did</th><th>Skills</th></tr>
+      <tr><td>Personal Webpage</td><td>A personal page with lists, a Word file, an audio recording and a photo, in light and dark versions.</td><td>HTML</td></tr>
+      <tr><td>HTML Functions Showcase</td><td>Text styles, text alignment, responsive picture, audio, video and YouTube video.</td><td>HTML, CSS</td></tr>
+      <tr><td><a href="projects/project6a/index.html" target="_blank">Contact Form</a></td><td>A form with required fields, email checking and phone number format.</td><td>HTML form</td></tr>
+      <tr><td><a href="projects/tutorial3/index.html" target="_blank">Layout Webpage</a></td><td>A page layout with banner, navigation menu, content and footer.</td><td>HTML, CSS</td></tr>
+      <tr><td><a href="projects/tutorial4/index.html" target="_blank">Student Registration Form</a></td><td>A full registration form styled with my own CSS.</td><td>HTML, CSS</td></tr>
+      <tr><td><a href="projects/tutorial5/index.html" target="_blank">TechCorp Company Page</a></td><td>A company home page with sticky navigation bar, services and account registration.</td><td>HTML, CSS</td></tr>
+      <tr><td><a href="projects/tutorial6/index.html" target="_blank">CSS Buttons</a></td><td>Button states (hover, focus, active) and onclick to change text, image and colour.</td><td>CSS, JavaScript</td></tr>
+      <tr><td><a href="projects/tutorial7/l7q1.html" target="_blank">JavaScript Exercises</a></td><td>Calculator, age checker, leap year checker, colour buttons and dropdown menu.</td><td>JavaScript</td></tr>
+      <tr><td><a href="projects/tutorial8/email.html" target="_blank">Passing Values between Pages</a></td><td>A registration form that sends the data to another page with sessionStorage.</td><td>JavaScript</td></tr>
+      <tr><td>This e-Portfolio</td><td>A responsive website with interactive components.</td><td>HTML, CSS, JavaScript</td></tr>
+    </table>
+    <a class="css-button" href="projects.html"><i class="fas fa-folder-open"></i> Try the live demos</a>
+  </div>
+
+  </div>
+</div>
+
+<!-- Back to top button -->
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+
+<!-- Footer -->
+<div class="footer">
+  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
+  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+</div>
+
+<script>
+// Accordion: open or close the panel when the button is clicked
+function pageLoad() {
+  var acc = document.getElementsByClassName("accordion");
+  for (var i = 0; i < acc.length; i++) {
+    acc[i].onclick = function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      panel.classList.toggle("show");
+
+      var sign = this.getElementsByClassName("sign")[0];
+      if (panel.classList.contains("show")) {
+        sign.innerHTML = "&minus;";
+      } else {
+        sign.innerHTML = "+";
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

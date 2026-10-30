@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tutorial 8 - Registration Result</title>
+</head>
+<body>
+
+<h1>Registration Information</h1>
+
+<script>
+var email = sessionStorage.getItem("email");
+var pwd = sessionStorage.getItem("pwd");
+var comment = sessionStorage.getItem("comment");
+var gender = sessionStorage.getItem("gender");
+var interest = sessionStorage.getItem("interest");
+var membership = sessionStorage.getItem("membership");
+
+document.write("Email: " + email);
+document.write("<br>");
+document.write("Password: " + pwd);
+document.write("<br>");
+document.write("Gender: " + gender);
+document.write("<br>");
+document.write("Interest: " + interest);
+document.write("<br>");
+document.write("Membership: " + membership);
+document.write("<br>");
+document.write("Comment: " + comment);
+</script>
+
+<br><br>
+<a href="email.html">Back to registration form</a>
+
+</body>
+</html>

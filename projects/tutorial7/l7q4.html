@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Leap Year Checker</h1>
+
+<button onclick="checkyear()">Check year</button>
+
+<p id="result"></p>
+
+<script>
+function checkyear()
+{
+  var Year = Number(prompt("Please enter the year.", ""));
+
+  if (Year % 4 == 0)
+  {
+    if (Year % 100 == 0)
+    {
+      if (Year % 400 == 0)
+      {
+        document.getElementById("result").innerHTML = Year + " is a leap year";
+      }
+      else
+      {
+        document.getElementById("result").innerHTML = Year + " is a common year";
+      }
+    }
+    else
+    {
+      document.getElementById("result").innerHTML = Year + " is a leap year";
+    }
+  }
+  else
+  {
+    document.getElementById("result").innerHTML = Year + " is a common year";
+  }
+}
+</script>
+
+</body>
+</html>

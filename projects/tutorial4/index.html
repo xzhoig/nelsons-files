@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Student Registration Form</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <input type="text" id="firstname" name="firstname" placeholder="Firstname" required>
+            </div>
+            <div class="form-group">
+                <label for="middlename">Middlename</label>
+                <input type="text" id="middlename" name="middlename" placeholder="Middlename">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Lastname</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Lastname" required>
+            </div>
+            <div class="form-group">
+                <label for="course">Course :</label>
+                <select id="course" name="course" required>
+                    <option value="">Course</option>
+                    <option value="CIS222">CIS222 Web Design</option>
+                </select>
+            </div>
+            <div class="form-group gender-group">
+                <label>Gender :</label>
+                <input type="radio" id="male" name="gender" value="Male" checked>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="Other">
+                <label for="other">Other</label>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone :</label>
+                <div class="phone-input">
+                    <input type="text" value="+852" readonly class="country-code">
+                    <input type="text" id="phone" name="phone" placeholder="phone no." required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Current Address :</label>
+                <textarea id="address" name="address" rows="5" placeholder="Current Address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group">
+                <label for="repassword">Re-type Password</label>
+                <input type="password" id="repassword" name="repassword" placeholder="Retype Password" required>
+            </div>
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+    </div>
+</body>
+</html>

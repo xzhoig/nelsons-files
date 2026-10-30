@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
+<title>My Projects | Chan Kai Yip Nelson</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<script src="js/main.js"></script>
+</head>
+<body class="folder-green">
+
+<!-- Header -->
+<div class="header">
+  <span class="stamp">Case No. S25201381</span>
+  <p class="kicker">Nelson's Files &middot; File 05</p>
+  <h1>My Projects</h1>
+  <p>Live demos of my course work</p>
+</div>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
+  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+  <ul id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="personal.html">About Me</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html" class="current">Projects</a></li>
+    <li><a href="other.html">More</a></li>
+    <li><a href="sitemap.html">Site Map</a></li>
+    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="folder">
+    <div class="folder-label">File 05 / My Projects</div>
+
+  <div class="section">
+    <h2>My Projects</h2>
+    <p>These are web pages I built in the CIS222 course. Click a button to open the live demo in a new tab.</p>
+    <div class="cards">
+      <div class="card project-card">
+        <img class="clip-photo" src="images/projects/layout_webpage.jpg" alt="Screenshot of Layout Webpage">
+        <h3>Layout Webpage</h3>
+        <span class="tag">HTML</span><span class="tag">CSS</span>
+        <p>A page layout with a banner image, navigation menu, self introduction and footer, built with div and flexbox.</p>
+        <a class="button" href="projects/tutorial3/index.html" target="_blank">Open demo</a>
+      </div>
+      <div class="card project-card">
+        <img class="clip-photo" src="images/projects/student_registration_form.jpg" alt="Screenshot of Student Registration Form">
+        <h3>Student Registration Form</h3>
+        <span class="tag">HTML form</span><span class="tag">CSS</span>
+        <p>A registration form with text fields, drop-down menu, radio buttons, phone number and password, styled with my own CSS.</p>
+        <a class="button" href="projects/tutorial4/index.html" target="_blank">Open demo</a>
+      </div>
+      <div class="card project-card">
+        <img class="clip-photo" src="images/projects/techcorp_company_page.jpg" alt="Screenshot of TechCorp Company Page">
+        <h3>TechCorp Company Page</h3>
+        <span class="tag">HTML</span><span class="tag">CSS</span>
+        <p>A company home page with a sticky navigation bar, hero section, service list and account registration form.</p>
+        <a class="button" href="projects/tutorial5/index.html" target="_blank">Open demo</a>
+      </div>
+      <div class="card project-card">
+        <img class="clip-photo" src="images/projects/css_buttons.jpg" alt="Screenshot of CSS Buttons">
+        <h3>CSS Buttons</h3>
+        <span class="tag">CSS</span><span class="tag">JavaScript</span>
+        <p>Buttons with hover, focus and active states. Click the buttons to change the text, the picture and the background colour.</p>
+        <a class="button" href="projects/tutorial6/index.html" target="_blank">Open demo</a>
+      </div>
+      <div class="card project-card">
+        <img class="clip-photo" src="images/projects/contact_form.jpg" alt="Screenshot of Contact Form">
+        <h3>Contact Form</h3>
+        <span class="tag">HTML form</span>
+        <p>A contact form where every field is required and the e-mail and telephone number must be in the correct format.</p>
+        <a class="button" href="projects/project6a/index.html" target="_blank">Open demo</a>
+      </div>
+      <div class="card project-card">
+        <img class="clip-photo" src="images/projects/passing_values_between_pages.jpg" alt="Screenshot of Passing Values between Pages">
+        <h3>Passing Values between Pages</h3>
+        <span class="tag">JavaScript</span><span class="tag">sessionStorage</span>
+        <p>A registration form that checks the e-mail and password, then shows all the data on another page.</p>
+        <a class="button" href="projects/tutorial8/email.html" target="_blank">Open demo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>JavaScript Exercises</h2>
+    <p>Seven small programs using prompt, if-else, for loops, functions and onclick events.</p>
+    <a class="button" href="projects/tutorial7/l7q1.html" target="_blank">Q1 Calculator</a> <a class="button" href="projects/tutorial7/l7q2.html" target="_blank">Q2 Sum 1 to n</a> <a class="button" href="projects/tutorial7/l7q3.html" target="_blank">Q3 Age</a> <a class="button" href="projects/tutorial7/l7q4.html" target="_blank">Q4 Leap year</a> <a class="button" href="projects/tutorial7/l7q5_a.html" target="_blank">Q5a onclick</a> <a class="button" href="projects/tutorial7/l7q5_b.html" target="_blank">Q5b Colours</a> <a class="button" href="projects/tutorial7/l7q6.html" target="_blank">Q6 Dropdown</a>
+  </div>
+
+  </div>
+</div>
+
+<!-- Back to top button -->
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+
+<!-- Footer -->
+<div class="footer">
+  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
+  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tutorial 8 - Registration Form</title>
+</head>
+
+<script>
+function validateemail()
+{
+
+  var email = document.myform.email.value;
+  var pwd = document.myform.pwd.value;
+
+  var comment = document.myform.comment.value;
+
+  var gender = "";
+  var ele = document.getElementsByName('gender');
+  for (i = 0; i < ele.length; i++) {
+    if (ele[i].checked)
+      gender = ele[i].value;
+  }
+
+  var interest = "";
+  var checkboxes = document.getElementsByName('interest');
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      interest += checkboxes[i].value + ", ";
+    }
+  }
+
+  var selectElement = document.querySelector('#select1');
+  var membership = selectElement.options[selectElement.selectedIndex].value;
+
+  var atposition = email.indexOf("@");
+  var dotposition = email.lastIndexOf(".");
+  if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= email.length) {
+    alert("Please enter a valid e-mail address");
+    return false;
+  }
+
+  if (pwd.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return false;
+  }
+
+  sessionStorage.setItem("email", email);
+  sessionStorage.setItem("pwd", pwd);
+  sessionStorage.setItem("comment", comment);
+  sessionStorage.setItem("gender", gender);
+  sessionStorage.setItem("interest", interest);
+  sessionStorage.setItem("membership", membership);
+}
+</script>
+
+<body>
+
+<h1>Registration Form</h1>
+
+<form name="myform" method="post" action="get_email.html" onsubmit="return validateemail();">
+
+Email: <input type="text" name="email"><br/><br/>
+
+Password: <input type="password" name="pwd"><br/><br/>
+
+Gender:
+<input type="radio" name="gender" value="Male" checked>Male
+<input type="radio" name="gender" value="Female">Female
+<input type="radio" name="gender" value="Others">Others
+<br/><br/>
+
+Interest:
+<input type="checkbox" name="interest" value="Reading">Reading
+<input type="checkbox" name="interest" value="Swimming">Swimming
+<input type="checkbox" name="interest" value="Hiking">Hiking
+<input type="checkbox" name="interest" value="Football">Football
+<br/><br/>
+
+Membership:
+<select id="select1">
+  <option value="Free">Free</option>
+  <option value="Basic">Basic</option>
+  <option value="Premium">Premium</option>
+</select>
+<br/><br/>
+
+Comment:<br/>
+<textarea name="comment" rows="5" cols="50"></textarea>
+<br/><br/>
+
+<input type="submit" value="register">
+<input type="reset" value="reset">
+
+</form>
+
+</body>
+</html>

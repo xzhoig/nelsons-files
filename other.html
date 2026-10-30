@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
+<title>More | Chan Kai Yip Nelson</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<script src="js/main.js"></script>
+</head>
+<body class="folder-orange">
+
+<!-- Header -->
+<div class="header">
+  <span class="stamp">Case No. S25201381</span>
+  <p class="kicker">Nelson's Files &middot; File 06</p>
+  <h1>More</h1>
+  <p>Hobbies, fun facts and contact</p>
+</div>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
+  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+  <ul id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="personal.html">About Me</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="other.html" class="current">More</a></li>
+    <li><a href="sitemap.html">Site Map</a></li>
+    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="folder">
+    <div class="folder-label">File 06 / More</div>
+
+  <div class="section">
+    <h2>Hobbies and Interests</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-gamepad"></i><h3>Video Games</h3>
+        <p>I enjoy strategy and adventure games. They give me ideas about good user interface design.</p></div>
+      <div class="card"><i class="fas fa-book-reader"></i><h3>Technical Tutorials</h3>
+        <p>I read online tutorials to learn new web design and programming skills.</p></div>
+      <div class="card"><i class="fas fa-music"></i><h3>Music</h3>
+        <p>Listening to music helps me relax and stay creative.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Fun Facts</h2>
+    <p>Click the button to see a fun fact about me.</p>
+    <button class="button orange" onclick="nextFact()">Show a fun fact</button>
+    <p id="fact"></p>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>Contact Me</h2>
+    <p>If you are interested in my profile, please leave a message.</p>
+    <form name="contactForm" class="reg-form" method="post" action="thankyou.html" onsubmit="return validateForm();">
+      <div class="two-cols">
+        <div class="form-row">
+          <label for="firstname">First name *</label>
+          <input type="text" id="firstname" name="firstname" placeholder="First name">
+          <span class="error" id="firstnameError"></span>
+        </div>
+        <div class="form-row">
+          <label for="lastname">Last name *</label>
+          <input type="text" id="lastname" name="lastname" placeholder="Last name">
+          <span class="error" id="lastnameError"></span>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="email">E-mail *</label>
+        <input type="text" id="email" name="email" placeholder="example@mail.com">
+        <span class="error" id="emailError"></span>
+      </div>
+      <div class="form-row">
+        <label for="phone">Telephone *</label>
+        <div class="phone-input">
+          <input type="text" value="+852" readonly class="country-code">
+          <input type="tel" id="phone" name="phone" placeholder="1234-5678">
+        </div>
+        <small>Format: 1234-5678</small>
+        <span class="error" id="phoneError"></span>
+      </div>
+      <div class="form-row">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject">
+          <option value="Job opportunity">Job opportunity</option>
+          <option value="Internship">Internship</option>
+          <option value="Project cooperation">Project cooperation</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Preferred contact method</label>
+        <input type="radio" name="method" id="m1" value="E-mail" checked> <label class="inline" for="m1">E-mail</label>
+        <input type="radio" name="method" id="m2" value="Phone"> <label class="inline" for="m2">Phone</label>
+      </div>
+      <div class="form-row">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="5" placeholder="Type your message"></textarea>
+        <span class="error" id="messageError"></span>
+      </div>
+      <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+    </form>
+  </div>
+
+  </div>
+</div>
+
+<!-- Back to top button -->
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+
+<!-- Footer -->
+<div class="footer">
+  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
+  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+</div>
+
+<script>
+// Fun facts: show the next fact every time the button is clicked
+var facts = [
+  "I started learning HTML in 2025.",
+  "My favourite colour for web design is orange.",
+  "I can type more than 50 words per minute.",
+  "My dream is to design a website used by thousands of people."
+];
+var factNo = 0;
+
+function nextFact() {
+  document.getElementById("fact").innerHTML = (factNo + 1) + ". " + facts[factNo];
+  factNo = factNo + 1;
+  if (factNo >= facts.length) {
+    factNo = 0;
+  }
+}
+
+// Form validation (Lecture 6), then pass the values to thankyou.html
+// by sessionStorage (Tutorial 8)
+function validateForm() {
+  var firstname = document.contactForm.firstname.value;
+  var lastname = document.contactForm.lastname.value;
+  var email = document.contactForm.email.value;
+  var phone = document.contactForm.phone.value;
+  var message = document.contactForm.message.value;
+
+  // drop down menu
+  var selectElement = document.querySelector("#subject");
+  var subject = selectElement.options[selectElement.selectedIndex].value;
+
+  // radio button
+  var method = "";
+  var ele = document.getElementsByName("method");
+  for (var i = 0; i < ele.length; i++) {
+    if (ele[i].checked) {
+      method = ele[i].value;
+    }
+  }
+
+  var ok = true;
+  document.getElementById("firstnameError").innerHTML = "";
+  document.getElementById("lastnameError").innerHTML = "";
+  document.getElementById("emailError").innerHTML = "";
+  document.getElementById("phoneError").innerHTML = "";
+  document.getElementById("messageError").innerHTML = "";
+
+  if (firstname == "") {
+    document.getElementById("firstnameError").innerHTML = "First name can't be blank.";
+    ok = false;
+  }
+  if (lastname == "") {
+    document.getElementById("lastnameError").innerHTML = "Last name can't be blank.";
+    ok = false;
+  }
+
+  var atposition = email.indexOf("@");
+  var dotposition = email.lastIndexOf(".");
+  if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= email.length) {
+    document.getElementById("emailError").innerHTML = "Please enter a valid e-mail address.";
+    ok = false;
+  }
+
+  // telephone must be in the format 1234-5678 (same as Project 6a)
+  var phonePattern = /^[0-9]{4}-[0-9]{4}$/;
+  if (phonePattern.test(phone) == false) {
+    document.getElementById("phoneError").innerHTML = "Please use the format 1234-5678.";
+    ok = false;
+  }
+
+  if (message == "") {
+    document.getElementById("messageError").innerHTML = "Message can't be blank.";
+    ok = false;
+  }
+
+  if (ok == false) {
+    return false;
+  }
+
+  sessionStorage.setItem("name", firstname + " " + lastname);
+  sessionStorage.setItem("email", email);
+  sessionStorage.setItem("phone", "+852 " + phone);
+  sessionStorage.setItem("subject", subject);
+  sessionStorage.setItem("method", method);
+  sessionStorage.setItem("message", message);
+  return true;
+}
+</script>
+</body>
+</html>

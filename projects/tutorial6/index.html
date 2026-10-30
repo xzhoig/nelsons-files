@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CSS Button Style - Tutorial 6</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Tutorial 6 &ndash; CSS 3: Button Style</h1>
+        <p>Chan Kai Yip Nelson (s25201381) &ndash; CIS222 Web Design and Development</p>
+    </div>
+
+    <div class="section">
+        <h2>Part 1: Styled button (Tutorial 6)</h2>
+        <p>Background colour, text colour, border, border-radius, box-shadow, padding and size are changed.
+           Try the three states: <b>hover</b> with the mouse, <b>focus</b> with the Tab key, <b>active</b> by clicking.</p>
+        <div class="demo-box">
+            <button type="button" class="button">Click me!</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Part 2: Buttons with onclick (Lecture 6 class work)</h2>
+        <p>Click the buttons to change the text, the image and the background colour of the page.</p>
+
+        <p id="demo">Hello World!</p>
+        <img id="myImage" src="images/apple_green.jpg" alt="An apple" width="200" height="200">
+
+        <div class="button-row">
+            <button type="button" class="button" onclick="changeText()">Change text</button>
+            <button type="button" class="button" onclick="changeImage()">Change image</button>
+            <button type="button" class="button b1" onclick="changeColor('#c8f0c8')">Green background</button>
+            <button type="button" class="button b2" onclick="changeColor('#c8dcff')">Blue background</button>
+            <button type="button" class="button" id="resetBtn">Reset</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Button styles adapted from the Tutorial 6 notes (freeCodeCamp: CSS Button Style).</p>
+    </div>
+
+    <script>
+        function changeText() {
+            document.getElementById("demo").innerHTML = "You clicked the button!";
+        }
+
+        function changeImage() {
+            document.getElementById("myImage").src = "images/apple_red.jpg";
+        }
+
+        function changeColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+
+        document.getElementById("resetBtn").onclick = function() {
+            document.getElementById("demo").innerHTML = "Hello World!";
+            document.getElementById("myImage").src = "images/apple_green.jpg";
+            document.body.style.backgroundColor = "#f4f4f4";
+        };
+    </script>
+
+</body>
+</html>

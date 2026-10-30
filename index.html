@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
+<title>Chan Kai Yip Nelson | Chan Kai Yip Nelson</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<script src="js/main.js"></script>
+</head>
+<body class="folder-kraft">
+
+<!-- Header -->
+<div class="header">
+  <span class="stamp">Case No. S25201381</span>
+  <p class="kicker">Nelson's Files &middot; File 00</p>
+  <h1>Chan Kai Yip Nelson</h1>
+  <p>A personal archive of a future web designer &middot; e-Portfolio</p>
+</div>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
+  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+  <ul id="navLinks">
+    <li><a href="index.html" class="current">Home</a></li>
+    <li><a href="personal.html">About Me</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="other.html">More</a></li>
+    <li><a href="sitemap.html">Site Map</a></li>
+    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="folder">
+    <div class="folder-label">File 00 / Chan Kai Yip Nelson</div>
+
+  <div class="section">
+    <div class="row">
+      <div class="col-small">
+        <img class="profile-photo" id="homePhoto" src="images/profile.jpg" alt="Photo of Chan Kai Yip Nelson"
+             onmouseover="this.src='images/profile_hover.jpg'" onmouseout="this.src='images/profile.jpg'">
+      </div>
+      <div class="col-big">
+        <h2 id="greeting">Hello!</h2>
+        <p>My name is <b>Chan Kai Yip Nelson</b>. I am a student of the Higher Diploma in
+           Artificial Intelligence and Information and Communication Technology at
+           <b>Saint Francis University</b>.</p>
+        <p>I am passionate about web development and my <b>career objective</b> is to become a
+           <b>Web Designer</b>. This website is my e-portfolio for job applications.</p>
+        <p id="today" class="mono"></p>
+        <div class="sticky">Currently studying CIS222 Web Design &amp; Development &#9998;</div><br>
+        <a class="css-button" href="projects.html"><i class="fas fa-rocket"></i> See my work</a>
+        <a class="button orange" href="personal.html">More about me</a>
+        <button class="button" onclick="showGoal()" id="goalBtn">My goal</button>
+        <p id="goal" style="display:none;"><i class="fas fa-bullseye"></i>
+           I want to design websites that are beautiful, easy to use and safe for everyone.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Open a File</h2>
+    <p>This website is organised like an archive. Each coloured folder holds one part of my story. Pick a folder to open it.</p>
+    <div class="folder-stack">
+      <a class="stack-folder f-blue" data-tab="File 01" href="personal.html"><h3>About Me</h3><p>Personal information, career objective, audio introduction.</p></a>
+      <a class="stack-folder f-yellow" data-tab="File 02" href="experience.html"><h3>Experience</h3><p>Working experience and course projects.</p></a>
+      <a class="stack-folder f-red" data-tab="File 03" href="education.html"><h3>Education</h3><p>My education background and current courses.</p></a>
+      <a class="stack-folder f-purple" data-tab="File 04" href="skills.html"><h3>Skills</h3><p>Technical skills, soft skills, languages and JavaScript tools.</p></a>
+      <a class="stack-folder f-green" data-tab="File 05" href="projects.html"><h3>Projects</h3><p>Live demos of the web pages I have built.</p></a>
+      <a class="stack-folder f-orange" data-tab="File 06" href="other.html"><h3>More</h3><p>Hobbies, fun facts and how to contact me.</p></a>
+      <a class="stack-folder f-grey" data-tab="File 07" href="sitemap.html"><h3>Site Map</h3><p>The index of every page in this archive.</p></a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>What I Can Do</h2>
+    <ul class="service-list">
+      <li><i class="fas fa-check-circle"></i> Build web pages with HTML5 &ndash; text, lists, tables, images, audio and video</li>
+      <li><i class="fas fa-check-circle"></i> Design layouts with CSS &ndash; div, flexbox, navigation bars and styled buttons</li>
+      <li><i class="fas fa-check-circle"></i> Create forms &ndash; registration and contact forms with input checking</li>
+      <li><i class="fas fa-check-circle"></i> Add interaction with JavaScript &ndash; events, DOM and sessionStorage</li>
+    </ul>
+  </div>
+
+  </div>
+</div>
+
+<!-- Back to top button -->
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+
+<!-- Footer -->
+<div class="footer">
+  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
+  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+</div>
+
+<script>
+// Show a greeting according to the time of the day
+function pageLoad() {
+  var today = new Date();
+  var hour = today.getHours();
+  var greeting;
+
+  if (hour < 12) {
+    greeting = "Good morning!";
+  } else if (hour < 18) {
+    greeting = "Good afternoon!";
+  } else {
+    greeting = "Good evening!";
+  }
+  document.getElementById("greeting").innerHTML = greeting + " Welcome to my e-Portfolio";
+  document.getElementById("today").innerHTML = "Today is " + today.toDateString() + ".";
+}
+
+// Show / hide my goal
+function showGoal() {
+  var goal = document.getElementById("goal");
+  if (goal.style.display == "none") {
+    goal.style.display = "block";
+    document.getElementById("goalBtn").innerHTML = "Hide goal";
+  } else {
+    goal.style.display = "none";
+    document.getElementById("goalBtn").innerHTML = "My goal";
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Add up from 1 to n</h1>
+
+<script>
+var n = prompt("Please enter a positive number n.", "");
+n = parseInt(n, 10);
+
+var answer = 0;
+for (var i = 1; i <= n; i++)
+{
+  document.write(i + ", ");
+  answer = answer + i;
+}
+document.write("<h1>The sum of 1 to " + n + " is " + answer + "</h1>");
+</script>
+
+</body>
+</html>

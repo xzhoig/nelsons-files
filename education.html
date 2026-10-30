@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
+<title>Education | Chan Kai Yip Nelson</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<script src="js/main.js"></script>
+</head>
+<body class="folder-red">
+
+<!-- Header -->
+<div class="header">
+  <span class="stamp">Case No. S25201381</span>
+  <p class="kicker">Nelson's Files &middot; File 03</p>
+  <h1>Education</h1>
+  <p>Schools, qualifications and what I am learning now</p>
+</div>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
+  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+  <ul id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="personal.html">About Me</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="education.html" class="current">Education</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="other.html">More</a></li>
+    <li><a href="sitemap.html">Site Map</a></li>
+    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="folder">
+    <div class="folder-label">File 03 / Education</div>
+
+  <div class="section">
+    <h2>Education Background</h2>
+    <table>
+      <tr><th>Year</th><th>School</th><th>Qualification</th></tr>
+      <tr><td>2025 &ndash; Present</td><td>Saint Francis University</td>
+          <td>Higher Diploma in Artificial Intelligence and Information and Communication Technology</td></tr>
+      <tr><td>2019 &ndash; 2025</td><td>ABC Secondary School</td>
+          <td>Hong Kong Diploma of Secondary Education (HKDSE)</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Current Courses</h2>
+    <p>Some of the courses I am studying this semester:</p>
+    <ul>
+      <li><b>CIS222</b> &ndash; Web Design and Development</li>
+      <li><b>CIS282</b> &ndash; Web Development and Security</li>
+    </ul>
+    <button class="button" onclick="showLearn()" id="learnBtn">What I learned in CIS222</button>
+    <div id="learn" style="display:none;">
+      <ul>
+        <li>How the World Wide Web, HTTP and DNS work</li>
+        <li>HTML tags, tables, lists and forms</li>
+        <li>CSS selectors, the box model, layout and buttons</li>
+        <li>JavaScript, the HTML DOM and form validation</li>
+        <li>Human-Computer Interaction (HCI) design principles</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Activities and Awards</h2>
+    <ul>
+      <li>Class representative (secondary school)</li>
+      <li>Member of the school Computer Club</li>
+    </ul>
+  </div>
+
+  </div>
+</div>
+
+<!-- Back to top button -->
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+
+<!-- Footer -->
+<div class="footer">
+  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
+  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+</div>
+
+<script>
+function showLearn() {
+  var learn = document.getElementById("learn");
+  if (learn.style.display == "none") {
+    learn.style.display = "block";
+    document.getElementById("learnBtn").innerHTML = "Hide";
+  } else {
+    learn.style.display = "none";
+    document.getElementById("learnBtn").innerHTML = "What I learned in CIS222";
+  }
+}
+</script>
+</body>
+</html>
