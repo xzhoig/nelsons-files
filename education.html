@@ -3,93 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
-<title>Education | Chan Kai Yip Nelson</title>
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CIS222">
+<meta name="description" content="Nelson's Files - the e-portfolio of Chan Kai Yip Nelson">
+<title>Education | Nelson's Files</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 <script src="js/main.js"></script>
 </head>
-<body class="folder-red">
+<body class="p-edu">
+<div id="progress"></div>
 
-<!-- Header -->
-<div class="header">
-  <span class="stamp">Case No. S25201381</span>
-  <p class="kicker">Nelson's Files &middot; File 03</p>
-  <h1>Education</h1>
-  <p>Schools, qualifications and what I am learning now</p>
-</div>
-
-<!-- Navigation bar -->
-<div class="navbar">
-  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
-  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
-  <ul id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="personal.html">About Me</a></li>
-    <li><a href="experience.html">Experience</a></li>
-    <li><a href="education.html" class="current">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="other.html">More</a></li>
-    <li><a href="sitemap.html">Site Map</a></li>
-    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
-  </ul>
-</div>
-
-<div class="container">
-  <div class="folder">
-    <div class="folder-label">File 03 / Education</div>
-
-  <div class="section">
-    <h2>Education Background</h2>
-    <table>
-      <tr><th>Year</th><th>School</th><th>Qualification</th></tr>
-      <tr><td>2025 &ndash; Present</td><td>Saint Francis University</td>
-          <td>Higher Diploma in Artificial Intelligence and Information and Communication Technology</td></tr>
-      <tr><td>2019 &ndash; 2025</td><td>ABC Secondary School</td>
-          <td>Hong Kong Diploma of Secondary Education (HKDSE)</td></tr>
-    </table>
+<!-- Top bar -->
+<header class="topbar">
+  <span class="page-name">Education</span>
+  <a class="brand" href="index.html">Nelson's Files</a>
+  <div class="links">
+    <a class="hide-sm" href="index.html">Home</a>
+    <a href="sitemap.html">Site map</a>
+    <button id="themeBtn" onclick="toggleTheme()">Blueprint</button>
   </div>
+</header>
 
-  <div class="section">
-    <h2>Current Courses</h2>
-    <p>Some of the courses I am studying this semester:</p>
-    <ul>
-      <li><b>CIS222</b> &ndash; Web Design and Development</li>
-      <li><b>CIS282</b> &ndash; Web Development and Security</li>
-    </ul>
-    <button class="button" onclick="showLearn()" id="learnBtn">What I learned in CIS222</button>
-    <div id="learn" style="display:none;">
-      <ul>
-        <li>How the World Wide Web, HTTP and DNS work</li>
-        <li>HTML tags, tables, lists and forms</li>
-        <li>CSS selectors, the box model, layout and buttons</li>
-        <li>JavaScript, the HTML DOM and form validation</li>
-        <li>Human-Computer Interaction (HCI) design principles</li>
-      </ul>
+<!-- Title -->
+<section class="hero">
+  <h1>Education</h1>
+  <p>Schools, qualifications and what I am learning now.</p>
+</section>
+
+<!-- The folder -->
+<div class="stage">
+  <div class="folder">
+    <div class="cover"><span class="cover-label">File 03</span></div>
+
+    <!-- Notebook sheet -->
+    <div class="sheet">
+      <div class="sheet-grid">
+        <div class="col-left">
+          <dl class="facts">
+            <dt>Now</dt><dd>Year 1, Higher Diploma in AI and ICT</dd>
+            <dt>University</dt><dd>Saint Francis University</dd>
+            <dt>Since</dt><dd>September 2025</dd>
+            <dt>Before</dt><dd>HKDSE, ABC Secondary School</dd>
+          </dl>
+        </div>
+        <div class="col-right">
+          <p class="dropcap">I chose to study Artificial Intelligence and ICT because I want to understand how technology works, and how to build things that people enjoy using.</p>
+          <table class="data">
+            <tr><th>Year</th><th>School</th><th>Qualification</th></tr>
+            <tr><td>2025 &ndash; now</td><td>Saint Francis University</td><td>Higher Diploma in Artificial Intelligence and Information and Communication Technology</td></tr>
+            <tr><td>2019 &ndash; 2025</td><td>ABC Secondary School</td><td>Hong Kong Diploma of Secondary Education (HKDSE)</td></tr>
+          </table>
+          <h2>Current courses</h2>
+          <ul>
+            <li><b>CIS222</b> &ndash; Web Design and Development</li>
+            <li><b>CIS282</b> &ndash; Web Development and Security</li>
+          </ul>
+          <button class="button" id="learnBtn" onclick="showLearn()">What I learned in CIS222</button>
+          <div id="learn" style="display:none; margin-top:14px;">
+            <ul>
+              <li>How the World Wide Web, HTTP and DNS work</li>
+              <li>HTML tags, tables, lists and forms</li>
+              <li>CSS selectors, the box model, layout and buttons</li>
+              <li>JavaScript, the HTML DOM and form validation</li>
+              <li>Human-Computer Interaction (HCI) design principles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr class="rule">
+    </div>
+
+    <!-- Scrapbook: notes and photos you can drag -->
+    <div class="scrapbook" style="--h:520px;">
+    <div class="scrap" style="--x:3%; --y:10px; --w:450px; --r:-1.4deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note pink">
+          <h3>Activities</h3>
+          <ul>
+            <li>Class representative (secondary school)</li>
+            <li>Member of the school Computer Club</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="scrap" style="--x:52%; --y:0px; --w:420px; --r:1.8deg; --z:6;">
+      <div class="scrap-inner">
+        <figure class="photo">
+          <svg class="clip" style="top:-24px; right:24px;" viewBox="0 0 30 84" aria-hidden="true"><path d="M11 74 V20 a8 8 0 0 1 16 0 V64 a12 12 0 0 1 -24 0 V12" fill="none" stroke="#2b2b2b" stroke-width="2.3" stroke-linecap="round"/></svg>
+          <img src="images/projects/css_buttons.jpg" alt="Screenshot of my CSS buttons classwork">
+          <figcaption>Classwork &middot; CSS button states</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="scrap" style="--x:8%; --y:230px; --w:380px; --r:1deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note yellow">
+          <h3>Favourite topic</h3>
+          <p>Nielsen&rsquo;s ten heuristics from Lecture 8. They changed the way I look at every website.</p>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
-
-  <div class="section">
-    <h2>Activities and Awards</h2>
-    <ul>
-      <li>Class representative (secondary school)</li>
-      <li>Member of the school Computer Club</li>
-    </ul>
-  </div>
-
-  </div>
 </div>
 
-<!-- Back to top button -->
-<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8593;</button>
 
-<!-- Footer -->
-<div class="footer">
-  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
-  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+<footer class="footer">
+  <div class="compasses" aria-hidden="true">
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="27" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 10 L33 34 L25 29 L17 34 Z" fill="currentColor"/><text x="38" y="12" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 38 L38 12" stroke="currentColor" stroke-width="2"/><path d="M38 12 L30 14 L36 20 Z" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><path d="M10 44 L38 10" stroke="currentColor" stroke-width="1.5"/><path d="M38 10 L28 16 L35 21 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="38" y="22" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 12 L38 38 M38 12 L12 38" stroke="currentColor" stroke-width="1"/><path d="M14 20 h22 M14 25 h22 M14 30 h22" stroke="currentColor" stroke-width="0.8"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="28" r="18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 28 L32 10" stroke="currentColor" stroke-width="3"/><text x="34" y="9" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><path d="M18 46 L34 4" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L39 34 L11 34 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L25 34" stroke="currentColor"/></svg>
 </div>
-
+  <div class="footer-row">
+    <div class="scale-bar"><svg viewBox="0 0 130 26" aria-hidden="true"><rect x="0" y="2" width="8" height="4" fill="currentColor"/><rect x="8" y="6" width="8" height="4" fill="currentColor"/><rect x="16" y="2" width="16" height="4" fill="currentColor"/><rect x="32" y="6" width="64" height="4" fill="currentColor"/><text x="0" y="22" fill="currentColor" font-size="8" font-family="monospace">0  4  8   16          32 m</text></svg></div>
+    <div>&copy; <span id="year"></span> Chan Kai Yip Nelson</div>
+    <div>Made for CIS222 / CIS282 &middot; <a href="sitemap.html">Site map</a></div>
+  </div>
+</footer>
 <script>
 function showLearn() {
   var learn = document.getElementById("learn");

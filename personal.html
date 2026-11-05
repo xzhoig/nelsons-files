@@ -3,128 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
-<title>About Me | Chan Kai Yip Nelson</title>
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CIS222">
+<meta name="description" content="Nelson's Files - the e-portfolio of Chan Kai Yip Nelson">
+<title>About Me | Nelson's Files</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 <script src="js/main.js"></script>
 </head>
-<body class="folder-blue">
+<body class="p-about">
+<div id="progress"></div>
 
-<!-- Header -->
-<div class="header">
-  <span class="stamp">Case No. S25201381</span>
-  <p class="kicker">Nelson's Files &middot; File 01</p>
+<!-- Top bar -->
+<header class="topbar">
+  <span class="page-name">About Me</span>
+  <a class="brand" href="index.html">Nelson's Files</a>
+  <div class="links">
+    <a class="hide-sm" href="index.html">Home</a>
+    <a href="sitemap.html">Site map</a>
+    <button id="themeBtn" onclick="toggleTheme()">Blueprint</button>
+  </div>
+</header>
+
+<!-- Title -->
+<section class="hero">
   <h1>About Me</h1>
-  <p>Who I am, what I want to do and the people behind me</p>
-</div>
+  <p>Who I am, what I want to do, and the people behind me.</p>
+</section>
 
-<!-- Navigation bar -->
-<div class="navbar">
-  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
-  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
-  <ul id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="personal.html" class="current">About Me</a></li>
-    <li><a href="experience.html">Experience</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="other.html">More</a></li>
-    <li><a href="sitemap.html">Site Map</a></li>
-    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
-  </ul>
-</div>
-
-<div class="container">
+<!-- The folder -->
+<div class="stage">
   <div class="folder">
-    <div class="folder-label">File 01 / About Me</div>
+    <div class="cover"><span class="cover-label">File 01</span></div>
 
-  <div class="section">
-    <h2>Personal Information</h2>
-    <div class="row">
-      <div class="col-small">
-        <img class="profile-photo" src="images/profile.jpg" alt="Photo of Chan Kai Yip Nelson"
-             onmouseover="this.src='images/profile_hover.jpg'" onmouseout="this.src='images/profile.jpg'">
-        <div class="sticky">Move your mouse over my photo!</div>
+    <!-- Notebook sheet -->
+    <div class="sheet">
+      <div class="sheet-grid">
+        <div class="col-left">
+          <div class="portrait">
+            <svg class="clip" viewBox="0 0 30 84" aria-hidden="true"><path d="M11 74 V20 a8 8 0 0 1 16 0 V64 a12 12 0 0 1 -24 0 V12" fill="none" stroke="#2b2b2b" stroke-width="2.3" stroke-linecap="round"/></svg>
+            <img src="images/profile.jpg" alt="Photo of Chan Kai Yip Nelson"
+                 onmouseover="this.src='images/profile_hover.jpg'" onmouseout="this.src='images/profile.jpg'">
+          </div>
+          <dl class="facts">
+            <dt>Name</dt><dd>Chan Kai Yip Nelson</dd>
+            <dt>Status</dt><dd>Full-time student</dd>
+            <dt>Programme</dt><dd>Higher Diploma in Artificial Intelligence and Information and Communication Technology</dd>
+            <dt>University</dt><dd>Saint Francis University, Hong Kong</dd>
+            <dt>E-mail</dt><dd><a href="mailto:nelson.chan@example.com">nelson.chan@example.com</a></dd>
+          </dl>
+        </div>
+        <div class="col-right">
+          <p class="dropcap">Hello! My name is Chan Kai Yip Nelson. I am a student who is passionate about web development. I am learning HTML, CSS and JavaScript, and how to build web pages that are structured, clear and easy to use.</p>
+          <p class="indent">I am a patient and careful person. I like to solve problems step by step, and I always try my best to finish my work on time.</p>
+          <button class="button" id="moreBtn" onclick="showMore()">Read more</button>
+          <p class="indent" id="more" style="display:none;">In my free time I love playing video games and reading technical tutorials. Both of them give me new ideas about design and technology.</p>
+
+          <h2>Career objective</h2>
+          <p>My <b>career objective</b> is to become a <b>Web Designer</b> who creates attractive, responsive and secure websites for different industries. These are my <b>desired jobs</b>, from most preferred to least preferred:</p>
+          <ol>
+            <li>Software Engineer</li>
+            <li>Web Designer</li>
+            <li>Data Analyst</li>
+          </ol>
+
+          <h2>People I am thankful for</h2>
+          <p>Many people have supported me. I am especially <b>thankful</b> for:</p>
+          <ul>
+            <li>My parents</li>
+            <li>My mentor</li>
+            <li>My best friend</li>
+          </ul>
+        </div>
       </div>
-      <div class="col-big">
-        <table>
-          <tr><th colspan="2">Key Facts</th></tr>
-          <tr><td><b>Name</b></td><td>Chan Kai Yip Nelson</td></tr>
-          <tr><td><b>Status</b></td><td>Full-time Student</td></tr>
-          <tr><td><b>Programme</b></td><td>Higher Diploma in AI and ICT</td></tr>
-          <tr><td><b>University</b></td><td>Saint Francis University</td></tr>
-          <tr><td><b>Location</b></td><td>Hong Kong</td></tr>
-          <tr><td><b>Email</b></td><td><a href="mailto:nelson.chan@example.com">nelson.chan@example.com</a></td></tr>
-        </table>
+      <hr class="rule">
+    </div>
+
+    <!-- Scrapbook: notes and photos you can drag -->
+    <div class="scrapbook" style="--h:520px;">
+    <div class="scrap" style="--x:3%; --y:0px; --w:480px; --r:-1.2deg; --z:6;">
+      <div class="scrap-inner">
+        <div class="note pink">
+          <h3>Download my profile</h3>
+          <p>Keep a copy of my profile as a Word document.</p>
+          <a class="button" href="file/AboutMe.docx" download>Download Word file</a>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="section">
-    <h2>Self Introduction</h2>
-    <p>Hello! My name is Chan Kai Yip Nelson. I am a student passionate about web development.
-       I am currently learning HTML, CSS and JavaScript, and how to create structured and
-       user-friendly web pages.</p>
-    <p>I am a patient and careful person. I enjoy solving problems step by step and I always try my
-       best to finish my work on time.</p>
-    <button class="button" onclick="showMore()" id="moreBtn">Read more</button>
-    <p id="more" style="display:none;">In my free time, I love playing video games and reading technical
-       tutorials. These hobbies help me to learn new ideas about design and technology.</p>
-  </div>
-
-  <div class="section">
-    <h2>Career Objective</h2>
-    <p>My <b>career objective</b> is to become a <b>Web Designer</b> who creates attractive,
-       responsive and secure websites for different industries.</p>
-    <p>Here is a ranked list of my <b>desired jobs</b>, from most preferred to least preferred:</p>
-    <ol>
-      <li>Software Engineer</li>
-      <li>Web Designer</li>
-      <li>Data Analyst</li>
-    </ol>
-  </div>
-
-  <div class="section">
-    <h2>Download My Profile</h2>
-    <p>If you would like to keep a copy of my profile, please click the button below to download the Word document:</p>
-    <a class="button" href="file/AboutMe.docx" download><i class="fas fa-file-word"></i> Download Word File</a>
-  </div>
-
-  <div class="section">
-    <h2>Audio Introduction</h2>
-    <p>If you prefer listening, you can play my audio self-introduction below:</p>
-    <audio controls>
-      <source src="audio/self_intro.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    <p><a href="audio/self_intro.mp3">Listen to / download my audio recording</a></p>
-  </div>
-
-  <div class="section">
-    <h2>People I am Thankful For</h2>
-    <p>Many people have supported me. I am especially <b>thankful</b> for:</p>
-    <ul>
-      <li>My parents</li>
-      <li>My mentor</li>
-      <li>My best friend</li>
-    </ul>
-  </div>
-
+    <div class="scrap" style="--x:52%; --y:90px; --w:360px; --r:0deg; --z:7;">
+      <div class="scrap-inner">
+        <button class="media-btn" id="audioBtn" onclick="toggleAudio()">
+          <span class="play" id="playIcon">&#9654;</span>
+          <span>My audio self-introduction<span class="media-time" id="audioTime">0:58 &middot; recorded by me</span></span>
+        </button>
+        <audio id="selfAudio" src="audio/self_intro.mp3" preload="metadata"></audio>
+        <p class="media-time" style="color:#fbf8f3; margin-top:8px;"><a href="audio/self_intro.mp3" style="color:#fbf8f3;">Download the recording</a></p>
+      </div>
+    </div>
+    <div class="scrap" style="--x:56%; --y:300px; --w:330px; --r:2.5deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note yellow">
+          <h3>A little tip</h3>
+          <p>Move your mouse over my photo. You can also pick up these notes and drag them around the page.</p>
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 
-<!-- Back to top button -->
-<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8593;</button>
 
-<!-- Footer -->
-<div class="footer">
-  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
-  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+<footer class="footer">
+  <div class="compasses" aria-hidden="true">
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="27" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 10 L33 34 L25 29 L17 34 Z" fill="currentColor"/><text x="38" y="12" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 38 L38 12" stroke="currentColor" stroke-width="2"/><path d="M38 12 L30 14 L36 20 Z" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><path d="M10 44 L38 10" stroke="currentColor" stroke-width="1.5"/><path d="M38 10 L28 16 L35 21 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="38" y="22" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 12 L38 38 M38 12 L12 38" stroke="currentColor" stroke-width="1"/><path d="M14 20 h22 M14 25 h22 M14 30 h22" stroke="currentColor" stroke-width="0.8"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="28" r="18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 28 L32 10" stroke="currentColor" stroke-width="3"/><text x="34" y="9" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><path d="M18 46 L34 4" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L39 34 L11 34 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L25 34" stroke="currentColor"/></svg>
 </div>
-
+  <div class="footer-row">
+    <div class="scale-bar"><svg viewBox="0 0 130 26" aria-hidden="true"><rect x="0" y="2" width="8" height="4" fill="currentColor"/><rect x="8" y="6" width="8" height="4" fill="currentColor"/><rect x="16" y="2" width="16" height="4" fill="currentColor"/><rect x="32" y="6" width="64" height="4" fill="currentColor"/><text x="0" y="22" fill="currentColor" font-size="8" font-family="monospace">0  4  8   16          32 m</text></svg></div>
+    <div>&copy; <span id="year"></span> Chan Kai Yip Nelson</div>
+    <div>Made for CIS222 / CIS282 &middot; <a href="sitemap.html">Site map</a></div>
+  </div>
+</footer>
 <script>
+// Read more / read less
 function showMore() {
   var more = document.getElementById("more");
   if (more.style.display == "none") {
@@ -134,6 +141,31 @@ function showMore() {
     more.style.display = "none";
     document.getElementById("moreBtn").innerHTML = "Read more";
   }
+}
+
+// Play / pause my audio introduction (Project 1 recording)
+function toggleAudio() {
+  var audio = document.getElementById("selfAudio");
+  if (audio.paused) {
+    audio.play();
+    document.getElementById("playIcon").innerHTML = "&#10074;&#10074;";
+  } else {
+    audio.pause();
+    document.getElementById("playIcon").innerHTML = "&#9654;";
+  }
+}
+
+function pageLoad() {
+  var audio = document.getElementById("selfAudio");
+  audio.ontimeupdate = function() {
+    var s = Math.floor(audio.currentTime);
+    var text = Math.floor(s / 60) + ":" + (s % 60 < 10 ? "0" : "") + (s % 60);
+    document.getElementById("audioTime").innerHTML = text + " &middot; playing";
+  };
+  audio.onended = function() {
+    document.getElementById("playIcon").innerHTML = "&#9654;";
+    document.getElementById("audioTime").innerHTML = "0:58 &middot; recorded by me";
+  };
 }
 </script>
 </body>

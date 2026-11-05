@@ -3,74 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
-<title>Thank You | Chan Kai Yip Nelson</title>
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CIS222">
+<meta name="description" content="Nelson's Files - the e-portfolio of Chan Kai Yip Nelson">
+<title>Thank You | Nelson's Files</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 <script src="js/main.js"></script>
 </head>
-<body class="folder-kraft">
+<body class="p-home">
+<div id="progress"></div>
 
-<!-- Header -->
-<div class="header">
-  <span class="stamp">Case No. S25201381</span>
-  <p class="kicker">Nelson's Files &middot; File 08</p>
+<!-- Top bar -->
+<header class="topbar">
+  <span class="page-name">Thank You</span>
+  <a class="brand" href="index.html">Nelson's Files</a>
+  <div class="links">
+    <a class="hide-sm" href="index.html">Home</a>
+    <a href="sitemap.html">Site map</a>
+    <button id="themeBtn" onclick="toggleTheme()">Blueprint</button>
+  </div>
+</header>
+
+<!-- Title -->
+<section class="hero">
   <h1>Thank You</h1>
-  <p>Your message has been received</p>
-</div>
+  <p>Your message has been filed. I will reply as soon as possible.</p>
+</section>
 
-<!-- Navigation bar -->
-<div class="navbar">
-  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
-  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
-  <ul id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="personal.html">About Me</a></li>
-    <li><a href="experience.html">Experience</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="other.html">More</a></li>
-    <li><a href="sitemap.html">Site Map</a></li>
-    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
-  </ul>
-</div>
-
-<div class="container">
+<!-- The folder -->
+<div class="stage">
   <div class="folder">
-    <div class="folder-label">File 08 / Thank You</div>
+    <div class="cover"><span class="cover-label">File 08</span></div>
 
-  <div class="section">
-    <h2>Thank You!</h2>
-    <p>Thank you for contacting me. I will reply to you as soon as possible.</p>
-    <p>Here is the information you sent:</p>
-    <table>
-      <tr><th colspan="2">Your Message</th></tr>
-      <tr><td><b>Name</b></td><td id="showName"></td></tr>
-      <tr><td><b>Email</b></td><td id="showEmail"></td></tr>
-      <tr><td><b>Telephone</b></td><td id="showPhone"></td></tr>
-      <tr><td><b>Contact by</b></td><td id="showMethod"></td></tr>
-      <tr><td><b>Subject</b></td><td id="showSubject"></td></tr>
-      <tr><td><b>Message</b></td><td id="showMessage"></td></tr>
-    </table>
-    <a class="button" href="index.html">Back to Home</a>
-    <a class="button orange" href="other.html#contact">Send another message</a>
-  </div>
+    <!-- Notebook sheet -->
+    <div class="sheet">
+      <div class="sheet-grid">
+        <div class="col-left">
+          <dl class="facts">
+            <dt>Status</dt><dd>Received</dd>
+            <dt>Filed in</dt><dd>File 06 / More</dd>
+          </dl>
+        </div>
+        <div class="col-right">
+          <h2>Your message</h2>
+          <table class="data">
+            <tr><td>Name</td><td id="showName"></td></tr>
+            <tr><td>E-mail</td><td id="showEmail"></td></tr>
+            <tr><td>Telephone</td><td id="showPhone"></td></tr>
+            <tr><td>Contact by</td><td id="showMethod"></td></tr>
+            <tr><td>Subject</td><td id="showSubject"></td></tr>
+            <tr><td>Message</td><td id="showMessage"></td></tr>
+          </table>
+          <a class="button" href="index.html">Back to Home</a>
+          <a class="button" href="other.html">Send another message</a>
+        </div>
+      </div>
+      <hr class="rule">
+    </div>
 
   </div>
 </div>
 
-<!-- Back to top button -->
-<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8593;</button>
 
-<!-- Footer -->
-<div class="footer">
-  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
-  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+<footer class="footer">
+  <div class="compasses" aria-hidden="true">
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="27" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 10 L33 34 L25 29 L17 34 Z" fill="currentColor"/><text x="38" y="12" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 38 L38 12" stroke="currentColor" stroke-width="2"/><path d="M38 12 L30 14 L36 20 Z" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><path d="M10 44 L38 10" stroke="currentColor" stroke-width="1.5"/><path d="M38 10 L28 16 L35 21 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="38" y="22" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 12 L38 38 M38 12 L12 38" stroke="currentColor" stroke-width="1"/><path d="M14 20 h22 M14 25 h22 M14 30 h22" stroke="currentColor" stroke-width="0.8"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="28" r="18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 28 L32 10" stroke="currentColor" stroke-width="3"/><text x="34" y="9" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><path d="M18 46 L34 4" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L39 34 L11 34 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L25 34" stroke="currentColor"/></svg>
 </div>
-
+  <div class="footer-row">
+    <div class="scale-bar"><svg viewBox="0 0 130 26" aria-hidden="true"><rect x="0" y="2" width="8" height="4" fill="currentColor"/><rect x="8" y="6" width="8" height="4" fill="currentColor"/><rect x="16" y="2" width="16" height="4" fill="currentColor"/><rect x="32" y="6" width="64" height="4" fill="currentColor"/><text x="0" y="22" fill="currentColor" font-size="8" font-family="monospace">0  4  8   16          32 m</text></svg></div>
+    <div>&copy; <span id="year"></span> Chan Kai Yip Nelson</div>
+    <div>Made for CIS222 / CIS282 &middot; <a href="sitemap.html">Site map</a></div>
+  </div>
+</footer>
 <script>
-// Get the values from sessionStorage
+// Get the values from sessionStorage (Tutorial 8)
 function pageLoad() {
   var name = sessionStorage.getItem("name");
   if (name == null) {

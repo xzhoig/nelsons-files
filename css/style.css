@@ -1,34 +1,81 @@
 /* =========================================================
    CIS222 / CIS282 Individual Assignment - e-Portfolio
-   "Nelson's Files" - Chan Kai Yip Nelson
-   Design idea: every page is a coloured archive folder with
-   paper sheets, index cards, sticky notes and stamps on a
-   dark desk. Everything is made with CSS only.
+   "Nelson's Files" (version 4) - Chan Kai Yip Nelson
+
+   Idea: a personal archive. Every page is a coloured folder
+   that opens like a real one. Inside there is one notebook
+   sheet and a scrapbook of notes, photos and paper clips
+   that you can pick up and move around.
    ========================================================= */
 
-/* ---------- Colours of the folders ---------- */
 :root {
-  --desk: #1b1b1f;
-  --paper: #f7f3e8;
-  --ink: #1f1f1f;
-  --blue: #2f6fde;
-  --yellow: #f2c230;
-  --red: #e0483e;
-  --purple: #7b5cd6;
-  --green: #3aa76d;
-  --orange: #f08a24;
-  --kraft: #c9a66b;
-  --folder: var(--kraft);
+  --bg: #f3ead8;              /* warm cream page */
+  --text-light: #2a1f10;      /* words on the page (dark brown) */
+  --on-color: #f6efe0;        /* words on a dark folder */
+  --grey: #7a6a55;
+  --paper: #f6f2ea;
+  --ink: #1c1c1c;
+
+  /* folder colours */
+  /* vintage archive cabinet */
+  --c-home: #c7a46a;
+  --c-about: #3d5a6c;
+  --c-exp: #d9a441;
+  --c-edu: #9c3d2e;
+  --c-skills: #6b7a3c;
+  --c-projects: #6b3a4a;
+  --c-more: #b8643a;
+  --c-map: #8c7b6b;
+  --folder: var(--c-home);
+
+  /* notes (see-through paper) */
+  --note-pink: rgba(236, 150, 165, 0.92);
+  --note-yellow: rgba(250, 222, 110, 0.92);
+  --note-blue: rgba(150, 178, 245, 0.92);
+  --note-green: rgba(150, 215, 185, 0.92);
+
+  /* fonts */
+  --f-display: "Anton", Impact, "Arial Narrow Bold", sans-serif;
+  --f-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", "Courier New", Courier, monospace;
+
+  /* motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* motion tokens (transitions.dev scale) */
+  --duration-stagger: 40ms;
+  --duration-micro: 80ms;
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-medium: 350ms;
+  --duration-slow: 400ms;
+  --duration-very-slow: 500ms;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: ease-in-out;
+  --ease-out: ease-out;
+  --ease-linear: linear;
+  --ease-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --ease-bounce-strong: cubic-bezier(0.34, 3.85, 0.64, 1);
+  --distance-micro: 4px;
+  --distance-small: 6px;
+  --distance-base: 8px;
+  --distance-medium: 12px;
+  --distance-large: 30px;
+  --blur-small: 2px;
+  --blur-medium: 3px;
+  --blur-large: 8px;
 }
 
-/* Each page uses a different folder colour */
-body.folder-blue   { --folder: var(--blue); }
-body.folder-yellow { --folder: var(--yellow); }
-body.folder-red    { --folder: var(--red); }
-body.folder-purple { --folder: var(--purple); }
-body.folder-green  { --folder: var(--green); }
-body.folder-orange { --folder: var(--orange); }
-body.folder-kraft  { --folder: var(--kraft); }
+body.p-home     { --folder: var(--c-home); }
+body.p-about    { --folder: var(--c-about); }
+body.p-exp      { --folder: var(--c-exp); }
+body.p-edu      { --folder: var(--c-edu); }
+body.p-skills   { --folder: var(--c-skills); }
+body.p-projects { --folder: var(--c-projects); }
+body.p-more     { --folder: var(--c-more); }
+body.p-map      { --folder: var(--c-map); }
 
 * {
   margin: 0;
@@ -36,316 +83,640 @@ body.folder-kraft  { --folder: var(--kraft); }
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 17px;
-  line-height: 1.65;
+  overflow-x: clip;
+}
+
+body {
+  background-color: var(--bg);
   color: var(--ink);
-  background-color: var(--desk);
-  /* fine lines like a wooden / leather desk */
-  background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 6px);
+  font-family: var(--f-serif);
+  font-size: 19px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Typewriter font for labels */
-.mono,
-.kicker,
-.stamp,
-.folder-label,
-.section h2,
-table th,
-.tag,
-.navbar ul li a,
-.footer {
-  font-family: "Courier New", Courier, monospace;
+a {
+  color: inherit;
 }
 
-/* ---------- Header ---------- */
-.header {
-  position: relative;
-  padding: 45px 30px 30px 30px;
-  color: #f2efe6;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.header .kicker {
-  font-size: 0.9rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--folder);
-}
-.header h1 {
-  font-size: 3rem;
-  line-height: 1.1;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 8px 0;
-}
-.header p {
-  color: #bdb8ab;
-}
-
-/* Rubber stamp */
-.stamp {
-  display: inline-block;
-  border: 3px solid var(--red);
-  color: var(--red);
-  padding: 4px 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transform: rotate(-6deg);
-  opacity: 0.85;
-  border-radius: 4px;
-}
-.header .stamp {
-  position: absolute;
-  right: 30px;
-  top: 40px;
-}
-
-/* ---------- Navigation: folder tabs ---------- */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 10px 20px 0 20px;
-  background-color: var(--desk);
-}
-.navbar .logo {
-  white-space: nowrap;
-  color: #f2efe6;
-  font-weight: bold;
-  padding-bottom: 10px;
-}
-.navbar ul {
-  display: flex;
-  align-items: flex-end;
-  list-style-type: none;
-}
-.navbar ul li a {
+img {
   display: block;
-  white-space: nowrap;
-  padding: 8px 12px;
-  margin-left: 3px;
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 10px 10px 0 0;
-  transform: translateY(6px);
-  transition: transform 0.2s;
+  max-width: 100%;
 }
-.navbar ul li a:hover {
-  transform: translateY(0);
-}
-.navbar ul li a.current {
-  transform: translateY(0);
-  padding-top: 12px;
-  box-shadow: 0 -3px 0 rgba(255, 255, 255, 0.6) inset;
-}
-/* tab colours follow the order of the menu */
-.navbar ul li:nth-child(1) a { background-color: var(--kraft); }
-.navbar ul li:nth-child(2) a { background-color: var(--blue); color: white; }
-.navbar ul li:nth-child(3) a { background-color: var(--yellow); }
-.navbar ul li:nth-child(4) a { background-color: var(--red); color: white; }
-.navbar ul li:nth-child(5) a { background-color: var(--purple); color: white; }
-.navbar ul li:nth-child(6) a { background-color: var(--green); color: white; }
-.navbar ul li:nth-child(7) a { background-color: var(--orange); }
-.navbar ul li:nth-child(8) a { background-color: #d9d4c7; }
 
-/* Hamburger menu button (only on small screens) */
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  color: var(--text-light);
+  border-bottom: 1px solid rgba(42, 31, 16, 0.15);
+  background-color: rgba(243, 234, 216, 0);
+  transition: background-color var(--duration-quick) var(--ease-in-out);
+  animation: barIn 0.9s var(--ease) both;
+}
+.topbar.solid {
+  background: rgba(243, 234, 216, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+@keyframes barIn {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+.topbar .brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--f-display);
+  font-size: 1.55rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 0.4s, transform 0.4s var(--ease);
+}
+.topbar .page-name {
+  font-family: var(--f-display);
+  font-size: 1.55rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s, transform 0.5s var(--ease);
+}
+.topbar.solid .page-name {
+  opacity: 1;
+  transform: translateY(0);
+}
+.topbar.solid .brand {
+  opacity: 0;
+  transform: translate(-50%, -12px);
+}
+.topbar .links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+.topbar .links a,
+.topbar .links button {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  color: var(--text-light);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+.topbar .links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+.topbar .links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 .menu-btn {
   display: none;
-  background: none;
-  border: 2px solid #f2efe6;
-  border-radius: 5px;
-  color: #f2efe6;
-  font-size: 1.4rem;
-  padding: 2px 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
 }
 
-/* Theme button */
-.theme-btn {
-  background-color: #f2efe6;
-  color: var(--ink);
-  border: none;
-  border-radius: 20px;
-  padding: 6px 12px;
-  margin: 0 0 10px 10px;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
-  cursor: pointer;
-}
-.theme-btn:hover {
-  background-color: var(--yellow);
+/* thin progress line */
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  width: 100%;
+  height: 3px;
+  background-color: var(--folder);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
 }
 
-/* ---------- Folder ---------- */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px 40px 20px;
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+.hero {
+  padding: 120px 32px 70px 32px;
+  color: var(--text-light);
+}
+.hero h1 {
+  font-family: var(--f-display);
+  font-weight: normal;
+  font-size: clamp(3rem, 9vw, 8.5rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.hero p {
+  max-width: 640px;
+  margin-top: 18px;
+  color: var(--grey);
+  font-size: 1.2rem;
+}
+.hero.center {
+  text-align: center;
+  padding-bottom: 120px;
+}
+.hero.center p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* letters of the title appear one by one (spans made by JavaScript) */
+.hero h1 .ch {
+  display: inline-block;
+  clip-path: inset(0 100% 0 0);
+  opacity: 0.2;
+  animation: letterIn var(--duration-very-slow) var(--ease-smooth-out) both;
+  animation-delay: calc(0.25s + var(--n) * var(--duration-stagger));
+}
+.hero h1 .space {
+  display: inline-block;
+  width: 0.28em;
+}
+@keyframes letterIn {
+  0%   { clip-path: inset(0 100% 0 0); opacity: 0.2; transform: translateY(var(--distance-base)); }
+  60%  { opacity: 0.8; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0); }
+}
+.hero p {
+  animation: fadeUp var(--duration-very-slow) var(--ease-smooth-out) 0.6s both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(var(--distance-medium)); filter: blur(var(--blur-medium)); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* =========================================================
+   THE FOLDER
+   ========================================================= */
+.stage {
+  position: relative;
+  padding: 0 0 0 32px;
+  perspective: 3000px;
 }
 .folder {
   position: relative;
+  width: calc(100% - 250px);
+  max-width: 1100px;
+  min-height: 900px;
   background-color: var(--folder);
-  border-radius: 0 12px 12px 12px;
-  padding: 50px 45px 30px 45px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 14px 0;
+  padding: 34px 4px 110px 4px;
+  transform-style: preserve-3d;
+  animation: folderUp 1.15s var(--ease) 0.15s both;
+  z-index: 2;
 }
-.folder-label {
+@keyframes folderUp {
+  from { transform: translateY(100vh); }
+  to   { transform: translateY(0); }
+}
+
+/* front cover: opens like a book (turns 180 degrees on the left edge) */
+.cover {
   position: absolute;
-  top: 12px;
-  left: 45px;
-  background-color: var(--paper);
-  padding: 2px 14px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  inset: 0;
+  z-index: 20;
+  border-radius: 0 0 14px 0;
+  background-color: var(--folder);
+  transform-origin: left center;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  animation: coverOpen 1.25s var(--ease) 0.5s both;   /* starts while the folder is still settling */
+  pointer-events: none;
+  /* a little darker line so the cover looks like card */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
 }
-
-/* ---------- Paper sheet ---------- */
-.section {
-  counter-increment: sheet;
-  position: relative;
-  background-color: var(--paper);
-  padding: 35px 35px 25px 35px;
-  margin: 25px 0 35px 0;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-  transform: rotate(-0.4deg);
-  transition: transform 0.3s;
-}
-.folder { counter-reset: sheet; }
-.section:nth-of-type(even) {
-  transform: rotate(0.5deg);
-}
-.section:hover {
-  transform: rotate(0deg);
-}
-
-/* Paper clip on every sheet (CSS only) */
-.section::before {
+.cover::after {
   content: "";
   position: absolute;
-  top: -14px;
-  right: 40px;
-  width: 16px;
-  height: 46px;
-  border: 3px solid #8d8d8d;
-  border-radius: 10px;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%);
+  opacity: 0;
+  animation: coverShade 1.25s var(--ease) 0.5s both;
 }
-.section::after {
-  content: "";
+.cover .cover-label {
   position: absolute;
-  top: -6px;
-  right: 44px;
-  width: 8px;
-  height: 30px;
-  border: 3px solid #8d8d8d;
-  border-bottom: none;
-  border-radius: 6px 6px 0 0;
-}
-
-/* Sheet title like a typed label */
-.section h2 {
-  display: inline-block;
-  font-size: 1.05rem;
+  top: 60px;
+  left: 60px;
+  font-family: var(--f-display);
+  font-size: 3rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  background-color: #ffffff;
-  border: 1px solid #333333;
-  padding: 3px 12px;
-  margin-bottom: 18px;
+  color: rgba(0, 0, 0, 0.25);
 }
-.section h2::before {
-  content: "No." counter(sheet, decimal-leading-zero) " / ";
-  color: var(--red);
+@keyframes coverOpen {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(-180deg); visibility: hidden; }
 }
-.section h3 {
-  font-size: 1.15rem;
-}
-.section p {
-  margin-bottom: 12px;
-}
-.section ul,
-.section ol {
-  margin-left: 25px;
-  margin-bottom: 12px;
+@keyframes coverShade {
+  from { opacity: 0; }
+  50%  { opacity: 1; }
+  to   { opacity: 0; }
 }
 
-/* Sticky note */
-.sticky {
-  display: inline-block;
-  background-color: #fff27a;
-  padding: 12px 16px;
-  font-family: "Comic Sans MS", "Segoe Print", cursive;
-  font-size: 0.95rem;
-  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.25);
-  transform: rotate(2deg);
-  margin: 10px 0;
+/* page leaving: the cover closes and the folder drops away */
+body.leaving .cover {
+  animation: coverClose var(--duration-fast) var(--ease-smooth-out) both;
+  visibility: visible;
+}
+body.leaving .folder {
+  animation: folderDown var(--duration-fast) var(--ease-smooth-out) var(--duration-quick) both;
+}
+body.leaving .hero,
+body.leaving .next-folder {
+  transition: opacity var(--duration-quick) var(--ease-in-out);
+  opacity: 0;
+}
+@keyframes coverClose {
+  from { transform: rotateY(-180deg); visibility: visible; }
+  to   { transform: rotateY(0deg); }
+}
+@keyframes folderDown {
+  from { transform: translateY(0); }
+  to   { transform: translateY(100vh); }
 }
 
-/* ---------- Two column layout ---------- */
-.row {
+/* ---- vertical tabs on the right edge (all files) ---- */
+.side-tabs {
+  position: absolute;
+  top: 0;
+  right: -42px;      /* tucked 4px under the folder edge, so there is never a gap */
+  width: 46px;
   display: flex;
-  gap: 35px;
-  align-items: center;
+  flex-direction: column;
+  gap: 0;
+  z-index: 1;
 }
-.col-small {
-  width: 35%;
-  text-align: center;
+.side-tabs a {
+  position: relative;
+  display: block;
+  width: 46px;
+  padding: 40px 0;
+  margin-bottom: -22px;
+  writing-mode: vertical-rl;
+  font-family: var(--f-serif);
+  font-size: 1.15rem;
+  line-height: 44px;
+  color: var(--on-color);
+  text-decoration: none;
+  /* only the middle is a plain block; top and bottom are curves */
+  background-color: transparent !important;
+  background-image: linear-gradient(var(--tab), var(--tab));
+  background-size: 100% calc(100% - 56px);
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.45s var(--spring), filter 0.3s;
 }
-.col-big {
-  width: 65%;
+.side-tabs a::before,
+.side-tabs a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 29px;
+  background-color: var(--tab);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30' preserveAspectRatio='none'><path d='M0 0 C0 11 40 12 40 30 L0 30 Z'/></svg>") no-repeat center / 100% 100%;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30' preserveAspectRatio='none'><path d='M0 0 C0 11 40 12 40 30 L0 30 Z'/></svg>") no-repeat center / 100% 100%;
+}
+.side-tabs a::before {
+  top: 0;
+}
+.side-tabs a::after {
+  bottom: 0;
+  transform: scaleY(-1);
+}
+.side-tabs a {
+  transition: width var(--duration-fast) var(--ease-smooth-out),
+              filter var(--duration-quick) var(--ease-in-out);
+}
+.side-tabs a:hover {
+  width: 56px;
+  filter: brightness(1.08);
+}
+.side-tabs a.dark-text {
+  color: var(--ink);
+}
+.side-tabs a.current {
+  transform: none;
+  z-index: 3;
 }
 
-/* ---------- Profile photo as a black and white polaroid ---------- */
-.profile-photo {
-  width: 230px;
-  height: 230px;
-  object-fit: cover;
-  background-color: white;
-  padding: 10px 10px 40px 10px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
-  transform: rotate(-3deg);
-  filter: grayscale(100%);
-  cursor: pointer;
-  transition: transform 0.4s, filter 0.4s;
+/* =========================================================
+   NOTEBOOK SHEET
+   ========================================================= */
+.sheet {
+  position: relative;
+  margin: 0 0 0 0;
+  background-color: var(--paper);
+  border-radius: 4px;
+  padding: 50px 50px 190px 110px;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.25  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    linear-gradient(90deg, transparent 75px, rgba(0, 0, 0, 0.22) 75px, rgba(0, 0, 0, 0.22) 76px, transparent 76px),
+    radial-gradient(circle at 37px 50%, var(--folder) 9px, transparent 10px);
+  background-size: 220px 220px, 100% 100%, 76px 160px;
+  background-repeat: repeat, no-repeat, repeat-y;
+  background-position: 0 0, 0 0, 0 40px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
 }
-.profile-photo:hover {
-  transform: rotate(0deg) scale(1.05);
+.sheet-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 60px;
+}
+.sheet .col-left {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.sheet .col-right p {
+  margin-bottom: 22px;
+  font-size: 1.32rem;
+  line-height: 1.45;
+}
+.sheet .col-right p.indent {
+  text-indent: 2em;
+}
+.sheet h2 {
+  font-family: var(--f-display);
+  font-weight: normal;
+  font-size: 2rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 36px 0 14px 0;
+}
+.sheet h2:first-child {
+  margin-top: 0;
+}
+.sheet ul,
+.sheet ol {
+  margin: 0 0 22px 1.3em;
+  font-size: 1.2rem;
+}
+.sheet li {
+  margin-bottom: 6px;
+}
+.sheet .rule {
+  border: none;
+  border-top: 1px solid var(--ink);
+  margin: 40px 0 0 0;
+  width: 60%;
+}
+
+/* drop cap */
+.dropcap::first-letter {
+  float: left;
+  font-family: var(--f-serif);
+  font-size: 5.4rem;
+  line-height: 0.8;
+  padding: 8px 12px 0 0;
+}
+
+/* key facts like "Born / Died" */
+.facts dt {
+  font-weight: bold;
+  margin-top: 16px;
+}
+.facts dt::after {
+  content: ":";
+}
+.facts dd {
+  margin: 0;
+}
+.facts a {
+  color: var(--ink);
+}
+
+/* polaroid style portrait, black and white, colour on hover */
+.portrait {
+  position: relative;
+  display: inline-block;
+  transform: rotate(-1.5deg);
+}
+.portrait img {
+  width: 260px;
+  height: 290px;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.05);
+  transition: filter 0.6s var(--ease);
+}
+.portrait:hover img {
   filter: grayscale(0%);
 }
+.portrait .clip {
+  position: absolute;
+  top: -22px;
+  right: 18px;
+  width: 26px;
+  z-index: 3;
+}
 
-/* ---------- Buttons (styles from my Tutorial 6) ---------- */
+/* =========================================================
+   SCRAPBOOK (items that overlap and can be dragged)
+   ========================================================= */
+.scrapbook {
+  position: relative;
+  height: var(--h, 700px);
+  margin-top: -140px;
+  pointer-events: none;
+}
+.scrap {
+  position: absolute;
+  left: var(--x, 0);
+  top: var(--y, 0);
+  width: var(--w, 420px);
+  transform: translateY(var(--py, 0px)) rotate(var(--r, 0deg));
+  pointer-events: auto;
+  will-change: transform;
+  z-index: var(--z, 5);
+}
+.scrap-inner {
+  transition: opacity var(--duration-slow) var(--ease-smooth-out),
+              transform var(--duration-slow) var(--ease-smooth-out);
+}
+
+/* items drop in when they come into view */
+.js .scrap-inner {
+  opacity: 0;
+  transform: translateY(80px) rotate(6deg) scale(1.04);
+}
+.js .scrap.in-view .scrap-inner {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * var(--duration-micro));
+}
+
+/* see-through coloured note */
+.note {
+  position: relative;
+  padding: 36px 36px 40px 36px;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.note.pink   { background-color: var(--note-pink); }
+.note.yellow { background-color: var(--note-yellow); }
+.note.blue   { background-color: var(--note-blue); }
+.note.green  { background-color: var(--note-green); }
+.note.paper  { background-color: rgba(255, 255, 255, 0.95); }
+.note h3 {
+  font-family: var(--f-display);
+  font-weight: normal;
+  font-size: 1.9rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.note p,
+.note li {
+  font-family: var(--f-mono);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+.note p {
+  margin-bottom: 12px;
+}
+.note ul {
+  margin-left: 1.2em;
+}
+
+/* photo with a white border */
+.photo {
+  position: relative;
+  background-color: #ffffff;
+  padding: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+.photo img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%) contrast(1.05);
+  transition: filter 0.6s var(--ease);
+}
+.photo:hover img {
+  filter: grayscale(0%);
+}
+.photo.black {
+  background-color: #111111;
+  padding: 8px;
+}
+.photo figcaption {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  padding: 6px 2px 0 2px;
+}
+
+/* torn paper edge at the bottom */
+.torn {
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 96% 97%, 92% 94%, 87% 98%, 82% 95%, 77% 99%, 71% 95%, 66% 98%, 60% 94%, 55% 97%, 49% 95%, 44% 99%, 38% 95%, 33% 98%, 27% 94%, 22% 97%, 16% 95%, 11% 99%, 6% 95%, 0 98%);
+}
+
+/* paper clip drawn with SVG */
+.scrap .clip {
+  position: absolute;
+  width: 30px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* a red media button like an old tape label */
+.media-btn {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 18px 24px;
+  border: none;
+  background-color: #e01414;
+  color: #ffffff;
+  font-family: var(--f-serif);
+  font-size: 1.1rem;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.35s var(--spring), background-color 0.3s;
+}
+.media-btn:hover {
+  transform: translateY(-3px);
+  background-color: #c50f0f;
+}
+.media-btn .play {
+  flex: 0 0 42px;
+  height: 42px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.media-time {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* dragging */
+.draggable {
+  cursor: grab;
+}
+.draggable.dragging {
+  cursor: grabbing;
+}
+.draggable.dragging .scrap-inner,
+.draggable.dragging.portrait {
+  transform: scale(1.04) !important;
+  transition: transform 0.3s var(--spring) !important;
+}
+.draggable.dragging .note,
+.draggable.dragging .photo {
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================================
+   BUTTONS (states from my Tutorial 6)
+   ========================================================= */
 .button {
   display: inline-block;
-  background-color: #0a0a23;
-  color: #ffffff;
+  background-color: #2a1f10;   /* dark brown, matches the archive colours */
+  color: #f6efe0;
   border: none;
   border-radius: 10px;
   padding: 11px 18px;
-  min-width: 120px;
-  margin: 5px 5px 5px 0;
-  font-size: 0.95rem;
-  font-family: Georgia, "Times New Roman", serif;
-  cursor: pointer;
+  margin: 5px 6px 5px 0;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
   text-decoration: none;
-  box-shadow: 0px 0px 2px 2px rgb(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.4s, transform 0.35s var(--spring), box-shadow 0.3s;
 }
 .button:hover {
   background-color: #002ead;
-  transition: 0.7s;
+  transform: translateY(-2px);
 }
 .button:focus {
   outline-color: transparent;
@@ -355,266 +726,223 @@ table th,
 .button:active {
   background-color: #ffbf00;
   color: #0a0a23;
-}
-.button.orange {
-  background-color: var(--orange);
-  color: var(--ink);
-}
-.button.orange:hover {
-  background-color: #c86f17;
-  color: white;
+  transform: translateY(1px) scale(0.97);
 }
 a.button:link,
 a.button:visited {
   color: #ffffff;
 }
-a.button.orange:link,
-a.button.orange:visited {
-  color: var(--ink);
-}
 
-/* Red call-to-action button (from my Tutorial 5) */
-.css-button {
-  display: inline-block;
-  background-color: #e74c3c;
-  color: white !important;
-  padding: 11px 22px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(231, 76, 60, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-}
-.css-button:hover {
-  background-color: #c0392b;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(231, 76, 60, 0.6);
-}
-
-/* ---------- Index cards ---------- */
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-}
-.card {
-  flex: 1 1 260px;
-  background-color: #ffffff;
-  /* red top line and blue ruled lines like a real index card */
-  background-image:
-    linear-gradient(var(--red), var(--red)),
-    repeating-linear-gradient(transparent 0px, transparent 27px, #c9dcf2 27px, #c9dcf2 28px);
-  background-size: 100% 2px, 100% 100%;
-  background-position: 0 38px, 0 10px;
-  background-repeat: no-repeat, repeat;
-  padding: 10px 18px 18px 18px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:nth-child(odd) { transform: rotate(-1deg); }
-.card:nth-child(even) { transform: rotate(1deg); }
-.card:hover {
-  transform: translateY(-8px) rotate(0deg);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-.card h3 {
-  font-size: 1.05rem;
-  height: 30px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-.card i {
-  font-size: 26px;
-  color: var(--folder);
-  margin: 8px 0;
-}
-.card a {
-  text-decoration: none;
-}
-
-/* Photo with a paper clip (Projects page) */
-.clip-photo {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 6px solid white;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-  margin: 10px 0 12px 0;
-  filter: grayscale(60%);
-  transition: filter 0.4s;
-}
-.project-card:hover .clip-photo {
-  filter: grayscale(0%);
-}
-
-/* ---------- Data sheet tables ---------- */
-table {
+/* =========================================================
+   TABLES, TABS, BARS, ACCORDION, FORM
+   ========================================================= */
+.data {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 12px;
+  font-size: 1.1rem;
+  margin-bottom: 22px;
 }
-table th {
-  background-color: var(--ink);
-  color: var(--paper);
-  padding: 8px 10px;
+.data th {
   text-align: left;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.85rem;
+  border-bottom: 2px solid var(--ink);
+  padding: 8px 6px;
 }
-table td {
-  padding: 9px 10px;
-  border-bottom: 1px dashed #9a9384;
+.data td {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+  padding: 10px 6px;
   vertical-align: top;
 }
-table td:first-child {
-  font-family: "Courier New", Courier, monospace;
-  text-transform: uppercase;
+.data td:first-child {
+  font-family: var(--f-mono);
   font-size: 0.85rem;
-  color: #6b6455;
-  width: 30%;
+  white-space: nowrap;
 }
-table tr:hover td {
-  background-color: #fff6c9;
+.data tr {
+  transition: background-color 0.3s;
+}
+.data tr:hover td {
+  background-color: rgba(250, 222, 110, 0.35);
 }
 
-/* ---------- Accordion (Experience page) ---------- */
+/* accordion (Experience) */
 .accordion {
   width: 100%;
-  background-color: var(--folder);
-  color: var(--ink);
-  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
   border: none;
-  border-radius: 10px 10px 0 0;
+  border-top: 1px solid var(--ink);
+  padding: 16px 0;
+  font-family: var(--f-display);
+  font-size: 1.6rem;
+  text-transform: uppercase;
   text-align: left;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.05rem;
-  font-weight: bold;
+  color: var(--ink);
   cursor: pointer;
-  margin-top: 14px;
-  transition: filter 0.3s;
 }
-.accordion:hover,
-.accordion.active {
-  filter: brightness(0.9);
+.accordion .year {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  margin-right: 14px;
 }
 .accordion .sign {
-  float: right;
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--f-mono);
+  font-size: 1.4rem;
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+.accordion.active .sign {
+  transform: rotate(45deg);
+}
+.accordion:hover {
+  color: var(--folder);
 }
 .panel {
-  display: none;
-  padding: 15px 20px;
-  background-color: #ffffff;
-  border: 1px solid #d6d0c2;
-  border-top: none;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-fast) var(--ease-smooth-out);
+}
+.panel-inner {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity var(--duration-fast) var(--ease-smooth-out),
+              transform var(--duration-fast) var(--ease-smooth-out);
 }
 .panel.show {
-  display: block;
+  grid-template-rows: 1fr;
+}
+.panel.show .panel-inner {
+  opacity: 1;
+  transform: none;
+}
+.panel-inner ul {
+  margin-top: 4px;
+  font-family: var(--f-mono);
+  font-size: 0.95rem;
 }
 
-/* ---------- Skill bars ---------- */
+/* tabs (Skills) */
+.tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.tab-buttons button {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color var(--duration-quick) var(--ease-in-out),
+              color var(--duration-quick) var(--ease-in-out),
+              transform var(--duration-fast) var(--ease-smooth-out);
+}
+.tab-buttons button:hover {
+  transform: translateY(-2px);
+}
+.tab-buttons button.active {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+.tab-content {
+  display: none;
+}
+.tab-content.show {
+  display: block;
+  animation: fadeUp var(--duration-slow) var(--ease-smooth-out);
+}
 .skill {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 .skill-name {
   display: flex;
   justify-content: space-between;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
 }
 .bar {
-  width: 100%;
-  height: 16px;
-  background-color: #e3dccb;
-  border: 1px solid #333333;
+  height: 10px;
+  border: 1px solid var(--ink);
 }
 .bar-fill {
-  width: 0%;
+  width: 0;
   height: 100%;
   background-color: var(--folder);
-  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.25) 0px, rgba(255,255,255,0.25) 6px, transparent 6px, transparent 12px);
-  transition: width 1.5s;
+  transition: width var(--duration-very-slow) var(--ease-smooth-out);
 }
 
-/* ---------- Tabs (Skills page) ---------- */
-.tab-buttons button {
-  background-color: #e3dccb;
-  border: 1px solid #333333;
-  border-bottom: none;
-  padding: 8px 16px;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
+/* result box for the JavaScript tools */
+.demo-result {
+  margin-top: 14px;
+  padding: 14px;
+  min-height: 52px;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-family: var(--f-mono);
   font-size: 0.95rem;
-  cursor: pointer;
-  border-radius: 8px 8px 0 0;
 }
-.tab-buttons button:hover {
-  background-color: #fff6c9;
+.demo-result.pop,
+#fact.pop {
+  animation: pop var(--duration-very-slow) var(--ease-bounce);
 }
-.tab-buttons button.active {
-  background-color: var(--folder);
-  color: white;
-}
-.tab-content {
-  display: none;
-  background-color: #ffffff;
-  border: 1px solid #333333;
-  padding: 18px;
-}
-.tab-content.show {
-  display: block;
+@keyframes pop {
+  from { transform: scale(0.95); opacity: 0.4; }
+  to   { transform: scale(1); opacity: 1; }
 }
 
-/* ---------- Forms (style from my Tutorial 4) ---------- */
-.form-row {
-  margin-bottom: 15px;
+/* form (Tutorial 4 / Project 6a) */
+.reg-form .form-row {
+  margin-bottom: 16px;
 }
-.form-row label {
+.reg-form label {
   display: block;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
   text-transform: uppercase;
-  font-size: 0.9rem;
   margin-bottom: 5px;
 }
-.form-row .inline {
+.reg-form label.inline {
   display: inline;
   text-transform: none;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: normal;
-  margin-right: 15px;
+  font-family: var(--f-serif);
+  font-size: 1.05rem;
+  margin-right: 14px;
 }
 .reg-form input[type=text],
-.reg-form input[type=email],
 .reg-form input[type=tel],
 .reg-form select,
 .reg-form textarea {
   width: 100%;
-  padding: 13px;
+  padding: 12px;
   border: none;
-  border-bottom: 2px solid #333333;
-  background-color: #eeeeee;
+  border-bottom: 2px solid var(--ink);
+  background-color: rgba(255, 255, 255, 0.55);
+  font-family: var(--f-mono);
   font-size: 0.95rem;
-  font-family: "Courier New", Courier, monospace;
-  color: #333333;
+  color: var(--ink);
+  transition: background-color var(--duration-quick) var(--ease-in-out),
+              border-color var(--duration-quick) var(--ease-in-out);
 }
 .reg-form input:focus,
 .reg-form select:focus,
 .reg-form textarea:focus {
   outline: none;
-  background-color: #fff6c9;
-  border-bottom: 2px solid var(--folder);
+  background-color: #ffffff;
+  border-bottom-color: var(--folder);
 }
 .reg-form .two-cols {
   display: flex;
-  gap: 15px;
+  gap: 16px;
 }
 .reg-form .two-cols .form-row {
-  width: 50%;
+  flex: 1;
 }
 .phone-input {
   display: flex;
@@ -622,297 +950,1494 @@ table tr:hover td {
 .phone-input .country-code {
   width: 70px !important;
   text-align: center;
-  background-color: #e0e0e0 !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+.reg-form small {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
 }
 .submit-btn {
   width: 100%;
-  background-color: #5cb85c;
-  color: white;
+  margin-top: 10px;
   padding: 15px;
   border: none;
-  font-size: 16px;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
+  background-color: var(--c-skills);
+  color: #f6efe0;
+  font-family: var(--f-mono);
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.35s var(--spring);
 }
 .submit-btn:hover {
   background-color: #4cae4c;
+  transform: translateY(-2px);
 }
 .error {
-  color: var(--red);
-  font-size: 0.9rem;
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  color: #c51d1d;
 }
 
-/* ---------- Lists ---------- */
-.service-list {
-  list-style-type: none;
+/* site map list */
+.map-list,
+.map-list ul {
+  list-style: none;
   margin-left: 0 !important;
 }
-.service-list li {
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  background-color: #ffffff;
-  border-left: 5px solid var(--folder);
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+.map-list ul {
+  margin-left: 28px !important;
+  padding-left: 16px;
+  border-left: 1px dashed rgba(0, 0, 0, 0.4);
 }
-.service-list li:hover {
-  transform: translateX(8px);
-}
-.service-list li i {
-  color: var(--green);
-  margin-right: 10px;
-}
-
-.sitemap ul {
-  list-style-type: none;
-  margin-left: 0;
-}
-.sitemap ul ul {
-  margin-left: 30px;
-  border-left: 2px dashed #9a9384;
-  padding-left: 15px;
-}
-.sitemap li {
-  margin: 8px 0;
-}
-.sitemap a {
-  font-weight: bold;
-}
-
-/* JavaScript demo results (Tutorial 7) */
-.demo-result {
-  min-height: 30px;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #fff27a;
-  font-family: "Courier New", Courier, monospace;
-  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
-}
-
-.tag {
-  display: inline-block;
-  background-color: var(--ink);
-  color: var(--paper);
-  font-size: 0.75rem;
-  padding: 1px 8px;
-  margin: 2px 2px 6px 0;
-  text-transform: uppercase;
-}
-
-audio {
-  width: 100%;
+.map-list li {
   margin: 10px 0;
 }
-
-/* ---------- Links ---------- */
-a:link {
-  color: #1d4fa8;
-}
-a:visited {
-  color: #5a3d8c;
-}
-a:hover {
-  color: var(--red);
-}
-
-/* ---------- Home page: stack of folders ---------- */
-.folder-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 42px 18px;
-  margin-top: 35px;
-}
-.stack-folder {
-  position: relative;
-  flex: 1 1 300px;
-  min-height: 150px;
-  padding: 40px 20px 18px 20px;
-  border-radius: 0 10px 10px 10px;
-  color: var(--ink) !important;
+.map-list a {
+  font-family: var(--f-display);
+  font-size: 1.5rem;
+  text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s;
+  transition: color var(--duration-quick) var(--ease-in-out);
 }
-.stack-folder::before {
-  content: attr(data-tab);
-  position: absolute;
-  top: -22px;
-  left: 0;
-  padding: 2px 14px;
-  border-radius: 8px 8px 0 0;
-  background-color: inherit;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
+.map-list a:hover {
+  color: var(--folder);
+}
+.map-list span {
+  font-family: var(--f-mono);
   font-size: 0.85rem;
-  text-transform: uppercase;
-}
-.stack-folder:hover {
-  transform: translateY(-10px) rotate(-1deg);
-}
-.stack-folder h3 {
-  font-size: 1.3rem;
-  text-transform: uppercase;
-}
-.stack-folder.f-blue   { background-color: var(--blue);   color: white !important; }
-.stack-folder.f-yellow { background-color: var(--yellow); }
-.stack-folder.f-red    { background-color: var(--red);    color: white !important; }
-.stack-folder.f-purple { background-color: var(--purple); color: white !important; }
-.stack-folder.f-green  { background-color: var(--green);  color: white !important; }
-.stack-folder.f-orange { background-color: var(--orange); }
-.stack-folder.f-grey   { background-color: #d9d4c7; }
-
-/* ---------- Blueprint mode (changed by JavaScript) ---------- */
-body.dark .section {
-  background-color: #1e4f8f;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 1px, transparent 1px, transparent 24px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 1px, transparent 1px, transparent 24px);
-  color: #eaf2ff;
-}
-body.dark .section h2 {
-  background-color: transparent;
-  border-color: #eaf2ff;
-  color: #eaf2ff;
-}
-body.dark .section a:link,
-body.dark .section a:visited {
-  color: #ffe58a;
-}
-body.dark table td:first-child {
-  color: #bcd3f5;
-}
-body.dark table tr:hover td {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-body.dark .card,
-body.dark .panel,
-body.dark .tab-content,
-body.dark .service-list li {
-  color: var(--ink);
-}
-body.dark .card a:link,
-body.dark .card a:visited,
-body.dark .panel a:link {
-  color: #1d4fa8;
-}
-body.dark a.button:link,
-body.dark a.button:visited {
-  color: #ffffff;
-}
-
-/* ---------- Back to top button ---------- */
-#topBtn {
-  display: none;
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 20;
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 50%;
-  background-color: var(--folder);
-  color: var(--ink);
-  font-size: 1.3rem;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-#topBtn:hover {
-  background-color: #f2efe6;
-}
-
-/* ---------- Footer ---------- */
-.footer {
-  color: #bdb8ab;
-  text-align: center;
-  padding: 25px 20px 35px 20px;
-  font-size: 0.9rem;
-}
-.footer a:link,
-.footer a:visited {
-  color: #f2efe6;
 }
 
 /* =========================================================
-   Responsive design: tablets and mobile phones
+   NEXT FOLDER (peeks out under the current one)
    ========================================================= */
-@media screen and (max-width: 1050px) {
-  .menu-btn {
-    display: block;
+.next-folder {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: calc(100% - 282px);
+  max-width: 1100px;
+  margin: -14px 0 0 32px;
+  padding: 60px 32px 220px 32px;
+  border-radius: 0 0 14px 0;
+  color: var(--on-color);
+  text-decoration: none;
+}
+.next-folder.dark-text {
+  color: var(--ink);
+}
+.next-folder h2 {
+  font-family: var(--f-display);
+  font-weight: normal;
+  font-size: clamp(2.6rem, 6vw, 5.5rem);
+  text-transform: uppercase;
+  line-height: 1;
+  transition: transform 0.6s var(--ease);
+}
+.next-folder:hover h2 {
+  transform: translateX(14px);
+}
+.next-folder .kicker {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+}
+
+/* Next button with a preview card */
+.next-pill {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.next-pill .preview {
+  width: 206px;
+  height: 168px;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--on-color);
+  font-family: var(--f-serif);
+  font-size: 1.3rem;
+  opacity: 0;
+  transform: translateY(16px) scale(0.94);
+  transition: opacity 0.4s var(--ease), transform 0.5s var(--spring);
+  pointer-events: none;
+}
+.next-pill .preview.dark-text {
+  color: var(--ink);
+}
+.next-pill .preview small {
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+}
+.next-pill:hover .preview,
+.next-pill.peek .preview {
+  opacity: 1;
+  transform: none;
+}
+.next-pill .pill {
+  min-width: 150px;
+  padding: 15px 24px;
+  border-radius: 18px;
+  background-color: #d9a441;
+  color: #2a1f10;
+  font-family: var(--f-mono);
+  font-size: 0.95rem;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.25;
+  transition: transform var(--duration-fast) var(--ease-smooth-out),
+              width var(--duration-fast) var(--ease-smooth-out);
+}
+.next-pill .pill:hover {
+  transform: translateY(-3px);
+}
+
+/* back to top */
+#topBtn {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 55;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--text-light);
+  color: var(--bg);
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.8);
+  transition: opacity 0.4s var(--ease), transform 0.45s var(--spring);
+}
+#topBtn.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+/* =========================================================
+   HOME PAGE: stacked folders with curved tabs
+   ========================================================= */
+.stack {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.band {
+  position: relative;
+  margin-top: -6px;
+  border-radius: 0 12px 0 0;
+  animation: bandIn 1s var(--ease) both;
+  animation-delay: calc(0.5s + var(--i) * 0.1s);
+}
+@keyframes bandIn {
+  from { transform: translateY(60vh); }
+  to   { transform: translateY(0); }
+}
+.band-tabs {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  display: flex;
+  gap: 0;
+  padding-left: 14px;
+}
+.ftab {
+  position: relative;
+  display: block;
+  padding: 5px 52px 3px 52px;
+  font-family: var(--f-serif);
+  font-size: 1.45rem;
+  color: var(--on-color);
+  text-decoration: none;
+  /* only the middle part is a plain block; the two sides are curves */
+  background-color: transparent !important;
+  background-image: linear-gradient(var(--tab), var(--tab));
+  background-size: calc(100% - 60px) 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.45s var(--spring);
+}
+.ftab.dark-text {
+  color: var(--ink);
+}
+.ftab + .ftab {
+  margin-left: -16px;
+}
+/* smooth S-shaped sides, like the tab of a real paper folder */
+.ftab::before,
+.ftab::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 31px;
+  background-color: var(--tab);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 40' preserveAspectRatio='none'><path d='M0 40 C11 40 12 0 30 0 L30 40 Z'/></svg>") no-repeat center / 100% 100%;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 40' preserveAspectRatio='none'><path d='M0 40 C11 40 12 0 30 0 L30 40 Z'/></svg>") no-repeat center / 100% 100%;
+}
+.ftab::before {
+  left: 0;
+}
+.ftab::after {
+  right: 0;
+  transform: scaleX(-1);
+}
+.ftab:hover {
+  transform: translateY(-6px);
+}
+.band-head {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 32px 22px 32px;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.band-head .arrow {
+  display: inline-block;
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+.band.open .band-head .arrow {
+  transform: rotate(-90deg);
+}
+.band-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-fast) var(--ease-smooth-out);
+}
+.band.open .band-body {
+  grid-template-rows: 1fr;
+}
+.band-body > div {
+  overflow: hidden;
+}
+.band-body p {
+  max-width: 620px;
+  padding: 0 60px 30px 60px;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.band-body .band-space {
+  height: 260px;
+}
+.band.light-text {
+  color: var(--on-color);
+}
+
+/* home intro sheet */
+.home-intro {
+  max-width: 1180px;
+  margin: 0 auto 120px auto;
+  padding: 0 32px;
+  color: var(--text-light);
+}
+
+/* =========================================================
+   FOOTER with compass marks and a scale bar
+   ========================================================= */
+.footer {
+  position: relative;
+  z-index: 3;
+  padding: 40px 32px 50px 32px;
+  color: var(--text-light);
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+.compasses {
+  display: flex;
+  justify-content: center;
+  gap: 46px;
+  margin-bottom: 50px;
+}
+.compasses svg {
+  width: 46px;
+  height: 46px;
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+.compasses svg:hover {
+  transform: rotate(-35deg);
+}
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.scale-bar svg {
+  width: 130px;
+  height: 26px;
+}
+.footer a {
+  color: var(--text-light);
+}
+
+/* =========================================================
+   BLUEPRINT MODE (Paper / Blueprint switch)
+   ========================================================= */
+body.dark .sheet {
+  background-color: #1d4a8c;
+  color: #e8f0ff;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 26px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 26px);
+}
+body.dark .sheet h2,
+body.dark .sheet .facts a,
+body.dark .accordion,
+body.dark .map-list a {
+  color: #e8f0ff;
+}
+body.dark .data td,
+body.dark .data th {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+body.dark .bar {
+  border-color: #e8f0ff;
+}
+body.dark .sheet .rule {
+  border-color: #e8f0ff;
+}
+body.dark .tab-buttons button {
+  border-color: #e8f0ff;
+  color: #e8f0ff;
+}
+body.dark .tab-buttons button.active {
+  background-color: #e8f0ff;
+  color: #1d4a8c;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media screen and (max-width: 1100px) {
+  .sheet-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
-  .navbar {
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 10px 15px;
-  }
-  .navbar .logo {
-    padding-bottom: 10px;
-  }
-  .navbar ul {
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-  .navbar ul.open {
+  .sheet .col-left {
     display: flex;
-  }
-  .navbar ul li a {
-    transform: none;
-    margin: 0 0 4px 0;
-    border-radius: 8px;
-  }
-  .theme-btn {
-    margin: 5px 0;
-  }
-  .row {
-    flex-direction: column;
-  }
-  .col-small,
-  .col-big {
-    width: 100%;
-  }
-  .header .stamp {
-    position: static;
-    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
   }
 }
 
-@media screen and (max-width: 600px) {
-  .header h1 {
-    font-size: 2rem;
+@media screen and (max-width: 800px) {
+  body {
+    font-size: 17px;
+  }
+  .topbar {
+    padding: 0 16px;
+  }
+  .topbar .links .hide-sm {
+    display: none;
+  }
+  .topbar .brand {
+    position: static;
+    transform: none;
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+  .topbar .page-name {
+    display: none;
+  }
+  .topbar.solid .brand {
+    opacity: 1;
+    transform: none;
+  }
+  .hero {
+    padding: 100px 16px 50px 16px;
+  }
+  .stage {
+    padding: 0 12px;
   }
   .folder {
-    padding: 45px 15px 15px 15px;
+    width: 100%;
+    padding: 30px 0 60px 0;
+    border-radius: 0 0 12px 12px;
   }
-  .folder-label {
-    left: 15px;
+  .side-tabs {
+    position: static;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 10px 16px 10px;
   }
-  .section {
-    padding: 30px 18px 18px 18px;
-    transform: none !important;
+  .side-tabs a {
+    writing-mode: horizontal-tb;
+    width: auto;
+    padding: 4px 12px;
+    margin: 0;
+    line-height: 1.4;
+    font-size: 0.9rem;
+    border-radius: 12px;
+    background-size: 100% 100%;
+  }
+  .side-tabs a::before,
+  .side-tabs a::after {
+    display: none;
+  }
+  .sheet {
+    padding: 34px 20px 50px 58px;
+    background-position: 0 0, -22px 0, -16px 30px;
+  }
+  .sheet .col-right p {
+    font-size: 1.12rem;
+  }
+  /* on phones the scrapbook items are shown one after another */
+  .scrapbook {
+    height: auto !important;
+    margin-top: 20px;
+    padding: 0 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .scrap {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100% !important;
+  }
+  .next-folder {
+    width: calc(100% - 24px);
+    margin-left: 12px;
+    padding-bottom: 140px;
+  }
+  .next-pill .preview {
+    display: none;
+  }
+  .band-tabs {
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-left: 10px;
+  }
+  .ftab {
+    font-size: 1.05rem;
+    padding: 4px 30px 2px 30px;
+    background-size: calc(100% - 36px) 100%;
+  }
+  .ftab::before,
+  .ftab::after {
+    width: 19px;
+  }
+  .band {
+    margin-top: 40px;
+  }
+  .band-body p {
+    padding: 0 20px 20px 20px;
   }
   .reg-form .two-cols {
     flex-direction: column;
     gap: 0;
   }
-  .reg-form .two-cols .form-row {
-    width: 100%;
+  .compasses {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .footer {
+    padding-bottom: 110px;   /* room for the Next button */
   }
 }
 
-/* keep notes readable in blueprint mode */
-.sticky,
-.demo-result {
-  color: var(--ink);
+/* respect people who switch off animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
 }
-/* project cards: no red line behind the photo */
-.project-card {
-  background-size: 0 0, 100% 100%;
+
+/* home page leaving: the folders drop away */
+body.leaving .stack {
+  transition: transform var(--duration-fast) var(--ease-smooth-out),
+              opacity var(--duration-fast) var(--ease-smooth-out);
+  transform: translateY(60vh);
+  opacity: 0;
+}
+
+
+/* =========================================================
+   MORE MOTION (version 4.1)
+   ========================================================= */
+
+/* notes and photos lean towards the mouse (3D tilt) */
+.scrap .note,
+.scrap .photo,
+.portrait img {
+  transform: perspective(900px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg));
+  transition: transform 1000ms var(--ease-smooth-out),
+              box-shadow var(--duration-slow) var(--ease-smooth-out),
+              filter 0.6s var(--ease);
+}
+.scrap .note.tilting,
+.scrap .photo.tilting,
+.portrait img.tilting {
+  transition: transform var(--duration-slow) var(--ease-smooth-out),
+              box-shadow var(--duration-slow) var(--ease-smooth-out),
+              filter 0.6s var(--ease);
+}
+
+/* when you throw a note it turns a little, then settles */
+.draggable {
+  transition: rotate 0.7s var(--spring);
+}
+.draggable.dragging {
+  transition: none;
+}
+
+/* text on the sheet appears line by line after the cover opens */
+.js .rv {
+  opacity: 0;
+  transform: translateY(var(--distance-medium));
+  filter: blur(var(--blur-medium));
+  transition: opacity var(--duration-very-slow) var(--ease-smooth-out),
+              transform var(--duration-very-slow) var(--ease-smooth-out),
+              filter var(--duration-very-slow) var(--ease-smooth-out);
+  transition-delay: calc(var(--d, 0) * 0.08s);
+}
+.js .rv.in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* the next folder rises as you reach it (value set by JavaScript) */
+.next-folder {
+  transform: translateY(var(--rise, 0px));
+}
+
+/* buttons that pull towards the mouse a little */
+.magnet {
+  transition: translate var(--duration-fast) var(--ease-smooth-out),
+              transform var(--duration-fast) var(--ease-smooth-out),
+              background-color var(--duration-quick) var(--ease-in-out);
+}
+
+/* home: a closed band lifts when you point at it */
+.band:not(.open) .band-head:hover {
+  transform: translateY(-3px);
+}
+.band-head {
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+
+/* paper clip wiggles when you point at a photo */
+.scrap:hover .clip,
+.portrait:hover .clip {
+  animation: wiggle 0.6s var(--spring);
+}
+@keyframes wiggle {
+  0%   { transform: rotate(0deg); }
+  30%  { transform: rotate(-12deg); }
+  60%  { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .rv {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* keep the portrait's small rotation while it slides in */
+.js .portrait.rv {
+  transform: translateY(var(--distance-medium)) rotate(-1.5deg);
+}
+.js .portrait.rv.in {
+  transform: rotate(-1.5deg);
+}
+
+
+
+
+/* =========================================================
+   HOME FOLDER TABS (version 4.3)
+   rounded top corners and curved feet that flow into the folder
+   ========================================================= */
+.band-tabs {
+  gap: 14px;
+  padding-left: 30px;
+}
+.ftab {
+  padding: 6px 38px 4px 38px;
+  border: none;
+  border-radius: 22px 22px 0 0;
+  background-color: var(--tab) !important;
+  background-image: none;
+  transition: padding 0.45s var(--spring);
+}
+.ftab + .ftab {
+  margin-left: 0;
+}
+/* the two feet: a square with a round "bite" taken out of it */
+.ftab::before,
+.ftab::after {
+  top: auto;
+  bottom: 0;
+  width: 23px;        /* 1px overlaps the tab, so no thin line shows at the join */
+  height: 22px;
+  -webkit-mask: none;
+  mask: none;
+  transform: none;
+}
+.ftab::before {
+  left: -22px;
+  background: radial-gradient(circle at 0 0, transparent 21.5px, var(--tab) 22px);
+}
+.ftab::after {
+  right: -22px;
+  background: radial-gradient(circle at 100% 0, transparent 21.5px, var(--tab) 22px);
+}
+/* hovering makes the tab grow taller, it never leaves its folder */
+.ftab:hover {
+  transform: none;
+  padding-top: 12px;
+}
+@media (max-width: 800px) {
+  .band-tabs {
+    gap: 10px;
+    padding-left: 16px;
+  }
+  .ftab {
+    padding: 4px 22px 2px 22px;
+    border-radius: 16px 16px 0 0;
+  }
+  .ftab::before,
+  .ftab::after {
+    width: 17px;
+    height: 16px;
+  }
+  .ftab::before {
+    left: -16px;
+    background: radial-gradient(circle at 0 0, transparent 15.5px, var(--tab) 16px);
+  }
+  .ftab::after {
+    right: -16px;
+    background: radial-gradient(circle at 100% 0, transparent 15.5px, var(--tab) 16px);
+  }
+}
+
+/* =========================================================
+   HOME: PULL A FOLDER OUT (version 4.4)
+   pointing at a folder pulls it, and every folder in front of it,
+   a little towards you - like lifting files out of a drawer
+   ========================================================= */
+.stack {
+  perspective: 1600px;
+  perspective-origin: 50% 0%;
+}
+.band {
+  animation-fill-mode: backwards;   /* after it slides in, hover can move it */
+  transform-origin: 50% 0%;
+  transition: transform 0.7s var(--ease);
+}
+/* OPEN A FOLDER: the back of the folder (with its tabs) stays where it is,
+   the front of the folder and every folder in front of it lean towards
+   you, so a strip of the back of the folder shows between them */
+.band.lift,
+.band.lift-main {
+  transform: translateY(12px) scaleX(1.016);
+}
+/* the tabs of the opened folder stay on the back of the folder */
+/* (the tab row itself does not move any more: the first tab is part of
+   the front and moves with it; tabs that stay on the back are held
+   back one by one, see "stay" below) */
+.band-tabs {
+  right: 0;
+  transition: transform 0.7s var(--ease);
+}
+/* the back of the folder: a strip that shows when the front opens.
+   Same colour as the folder, and as wide as the tab row, which is
+   1.6% narrower than the front - about 9px on each side.
+   (::before, so it is drawn behind the tabs) */
+.band-tabs::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-color: var(--back, var(--band));
+  /* always 12px tall with whole round corners. The front of the folder
+     covers it from below when the folder closes (clip-path), so the
+     round corners never get squashed */
+  clip-path: inset(0 0 12px 0);
+  transition: clip-path 0.7s var(--ease);
+}
+/* exactly as tall as the gap (12px): 1px more would lie on top of the
+   front of the folder and show as a thin coloured line */
+.band.lift-main .band-tabs::before {
+  clip-path: inset(0 0 0 0);
+}
+/* every tab is its own folder. The back that shows has the colour of
+   the tab you point at (red under Education, purple under Projects).
+   Tabs on the left of it are folders in front, so they move with the front. */
+.ftab {
+  transition: padding 0.45s var(--spring), margin 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+
+/* each tab stands on the folder by itself, so only the tab you
+   point at grows taller - the tab next to it does not stretch */
+.band-tabs {
+  align-items: flex-end;
+}
+
+/* home: the footer is the bottom part of the front folder */
+.p-home .stack {
+  padding-bottom: 0;
+}
+.p-home .band-body .band-space {
+  height: 120px;
+}
+.p-home .footer {
+  perspective: none;
+  width: calc(100% - 64px);
+  max-width: 1116px;
+  margin: -1px auto 0 auto;
+  background-color: var(--c-more);
+  transform-origin: 50% 0%;
+  transition: transform 0.7s var(--ease);
+}
+/* the bottom of the front folder tips towards you */
+.p-home .footer.lift {
+  transform: perspective(900px) translateY(12px) scaleX(1.016) rotateX(var(--tip, -4deg));
+}
+@media (prefers-reduced-motion: reduce) {
+  .band.lift,
+  .band.lift-main,
+  .p-home .footer.lift {
+    transform: none;
+  }
+}
+
+/* an open folder leaves room for the tabs of the folder in front of it */
+.band:not(:last-child) .band-body p:last-child {
+  padding-bottom: 64px;
+}
+
+/* the tab row is now as wide as the folder: only the tabs themselves
+   take clicks, so the label of the folder behind can still be clicked */
+.band-tabs {
+  pointer-events: none;
+}
+.band-tabs .ftab {
+  pointer-events: auto;
+}
+
+/* both top corners of every folder are rounded (the left one was square) */
+.band {
+  border-radius: 12px 12px 0 0;
+}
+/* the first tab starts after the round corner, so its foot sits on the folder */
+.band-tabs {
+  padding-left: 36px;
+}
+@media (max-width: 800px) {
+  .band-tabs {
+    padding-left: 30px;
+  }
+}
+
+/* more space between two tabs, so their round feet never overlap */
+.band-tabs {
+  gap: 46px;
+}
+@media (max-width: 800px) {
+  .band-tabs {
+    gap: 34px;
+  }
+}
+
+/* the back of an opened folder has the same round top corners (12px)
+   as the front of the folder */
+.band-tabs::before {
+  border-radius: 12px 12px 0 0;
+}
+
+
+/* the back starts 1px under the bottom of the tabs (it is drawn behind
+   them), so no thin dark line can show between a tab and the back while
+   the folder is moving */
+.band-tabs::before {
+  top: calc(100% - 1px);
+  height: 13px;
+  clip-path: inset(0 0 13px 0);
+}
+.band.lift-main .band-tabs::before {
+  clip-path: inset(0 0 0 0);
+}
+/* the front of every folder reaches 1px higher (a shadow in its own
+   colour, drawn under the back), so no thin dark line can show between
+   the back and the front while the folder is moving */
+.band {
+  box-shadow: 0 -1px 0 var(--band);
+}
+
+/* SHADOW: the front of an opened folder casts a soft shadow on the back
+   of the folder, darker near the front (like Mosby's folders) */
+.band-tabs::before {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.16));
+}
+/* and a soft shadow on the dark page beside the back */
+.band.lift,
+.band.lift-main {
+  box-shadow: 0 -1px 0 var(--band), 0 -5px 9px -3px rgba(42, 31, 16, 0.28);
+}
+
+/* =========================================================
+   FOLDER OPEN / CLOSE SPEED
+   One curve and one time for every part of opening and closing a
+   folder - the same as mosbyfiles.com: 0.65s, easeOutCubic
+   ========================================================= */
+:root {
+  --fold-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  --fold-time: 0.65s;
+}
+.band {
+  transition: transform var(--fold-time) var(--fold-ease),
+              box-shadow var(--fold-time) var(--fold-ease);
+}
+.band-tabs {
+  transition: transform var(--fold-time) var(--fold-ease);
+}
+.band-tabs::before {
+  transition: clip-path var(--fold-time) var(--fold-ease),
+              transform var(--fold-time) var(--fold-ease);
+}
+.ftab {
+  transition: padding-top 0.45s var(--spring),
+              padding-bottom var(--fold-time) var(--fold-ease),
+              margin var(--fold-time) var(--fold-ease),
+              transform var(--fold-time) var(--fold-ease);
+}
+.p-home .footer {
+  transition: transform var(--fold-time) var(--fold-ease);
+}
+
+/* The first tab of a folder (About Me, Experience, Skills, More) has the
+   colour of the folder. Its foot always reaches 3px into the front
+   (same colour, cannot be seen), so no thin line can show under it. */
+.band-tabs .ftab:first-child {
+  margin-bottom: -3px;
+  padding-bottom: 7px;
+}
+@media (max-width: 800px) {
+  .band-tabs .ftab:first-child {
+    padding-bottom: 5px;
+  }
+}
+
+
+/* =========================================================
+   WHICH TABS STAY ON THE BACK
+   Every tab is part of the front of its folder and moves with it, with
+   no animation of its own, so it can never come loose from it.
+   A tab that should stay on the back ("stay") is held back by the same
+   distance, in the opposite direction:
+   - point at the first tab or the folder: all tabs stay
+   - point at Education: Education stays, About Me goes with the front
+   The back strip is held back the same way.
+   ========================================================= */
+.band.lift-main .band-tabs::before {
+  transform: translateY(-12px) scaleX(0.984);
+}
+.band.lift-main .ftab.stay {
+  transform: translateY(-12px) scaleX(0.98425);
+}
+/* About Me going from the back down to the front (you moved from
+   About Me to Education): first its colour is stretched down to the
+   front in one step, then it slides - only its top comes down, so no
+   back shows under it */
+.band-tabs .ftab.drop-pre {
+  /* margin and padding jump in one step; the move keeps going smoothly */
+  transition: transform var(--fold-time) var(--fold-ease) !important;
+  margin-bottom: -15px;
+  padding-bottom: 19px;
+}
+@media (max-width: 800px) {
+  .band-tabs .ftab.drop-pre {
+    padding-bottom: 17px;
+  }
+}
+
+/* =========================================================
+   OPEN A FOLDER FROM THE HOME PAGE (like mosbyfiles.com)
+   ========================================================= */
+/* the stack is drawn above the copy of the picked folder */
+.p-home .stack {
+  position: relative;
+  z-index: 1;
+}
+.p-home .hero {
+  position: relative;
+  z-index: 1;
+}
+/* the copy of the picked folder (made by JavaScript) */
+.fly-folder {
+  position: fixed;
+  z-index: 0;
+  border-radius: 12px 12px 0 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+.fly-folder .fly-tab {
+  position: absolute;
+  bottom: 100%;
+  margin: 0;
+  white-space: nowrap;
+  text-align: center;
+  pointer-events: none;
+}
+/* 0 - 0.6s: the title fades, the folders in front fall away */
+body.opening .hero {
+  transition: opacity 0.5s ease !important;
+  opacity: 0 !important;      /* the scroll effect sets opacity on the title */
+}
+body.opening .band.fall,
+body.opening .footer.fall {
+  transform: translateY(110vh) !important;
+  transition: transform 0.6s cubic-bezier(0.55, 0, 0.75, 0) calc(var(--k, 0) * 0.04s) !important;
+}
+body.opening .band.fade {
+  opacity: 0 !important;
+  transition: opacity 0.35s ease !important;
+}
+body.opening .next-pill,
+body.opening #topBtn {
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+/* 1.25s - 1.65s: like mosbyfiles.com the folder turns to the right around
+   its top left corner and grows (it does not fall); the next page goes on
+   turning it. 25deg and 1.15 must match FLY_TURN and FLY_GROW in main.js */
+/* while it waits it leans back a little (it does not stand dead still) */
+.fly-folder.lean {
+  transform: perspective(1400px) rotateX(4deg) rotate(0deg) scale(1);
+  transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
+}
+/* slow in, slow out: it does not stop at full speed when the page changes,
+   and the next page starts it again from rest (0.45s = FLY_TIP_TIME) */
+.fly-folder.lean.tip,
+.fly-folder.tip {
+  transform: perspective(1400px) rotateX(0deg) rotate(25deg) scale(1.15);
+  transition: transform 0.45s cubic-bezier(0.45, 0, 0.4, 1);
+}
+/* on the next page the old folder keeps turning and falls out of view,
+   while the new folder swings in over it (like mosbyfiles.com) */
+.fly-folder.fly-out {
+  z-index: 1;
+  pointer-events: none;
+  animation: flyOut 0.6s cubic-bezier(0.4, 0, 0.8, 0.4) both;
+}
+@keyframes flyOut {
+  from { transform: translate(2vw, 10vh) rotate(12deg); }
+  to   { transform: translate(14vw, 95vh) rotate(32deg); }
+}
+html.swing-in .stage {
+  position: relative;
+  z-index: 2;
+}
+
+/* the next page: its folder swings in, turning a quarter to the right,
+   so the tabs that were on top end up on the right side */
+html.swing-in .folder {
+  /* it starts from rest (the home page's folder slowed down to a stop),
+     speeds up, then slows down into place */
+  animation: folderSwing 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+  transform-origin: 0 0;
+}
+@keyframes folderSwing {
+  /* --swing-from is set by main.js: where the home page's folder stopped */
+  from { transform: var(--swing-from, translate(22vw, 62vh) rotate(-38deg)); }
+  to   { transform: translate(0, 0) rotate(0deg); }
+}
+/* it comes in already open, so there is no cover to turn */
+html.swing-in .cover {
+  display: none;
+}
+/* the title letters appear when the folder is nearly in place */
+html.swing-in .hero h1 .ch {
+  animation-delay: calc(0.4s + var(--n) * 0.035s);
+}
+html.swing-in .hero p {
+  animation-delay: 0.6s;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.swing-in .folder {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   BACK TO THE HOME PAGE (like mosbyfiles.com)
+   ========================================================= */
+/* the file's folder turns back and falls away (the opposite of swinging in) */
+body.swing-out .folder {
+  animation: folderSwingOut 0.55s cubic-bezier(0.55, 0, 0.8, 0.3) both !important;
+  transform-origin: 0 0;
+}
+@keyframes folderSwingOut {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to   { transform: translate(-8vw, 80vh) rotate(-36deg); }
+}
+body.swing-out .cover {
+  display: none;
+}
+body.swing-out .hero,
+body.swing-out .next-folder,
+body.swing-out .next-pill,
+body.swing-out #topBtn,
+body.swing-out .scrapbook {
+  transition: opacity 0.35s ease !important;
+  opacity: 0 !important;
+}
+
+/* the home page: the folders come up from the bottom one by one and
+   stack up; the first one is still turning a little as it lands */
+html.stack-in .p-home .band {
+  animation: bandRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(0.05s + var(--i) * 0.12s);
+  transform-origin: 0 0;
+}
+html.stack-in .p-home .band:first-child {
+  --r: 4deg;
+}
+@keyframes bandRise {
+  from { transform: translateY(100vh) rotate(var(--r, 0deg)); }
+  to   { transform: translateY(0) rotate(0deg); }
+}
+/* the footer is the bottom of the front folder: it comes with it */
+html.stack-in .p-home .footer {
+  animation: bandRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(0.05s + 3 * 0.12s);
+}
+/* the title just fades in */
+html.stack-in .p-home .hero {
+  animation: fadeIn 0.8s ease 0.3s backwards;
+}
+html.stack-in .p-home .hero h1 .ch {
+  animation: none;
+  clip-path: none;
+  opacity: 1;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* normal opening of the home page: the footer comes up with the front folder,
+   so it is not seen before the folders */
+.p-home .footer {
+  animation: bandIn 1s var(--ease) backwards;
+  animation-delay: calc(0.5s + 3 * 0.1s);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.stack-in .p-home .band,
+  html.stack-in .p-home .footer,
+  html.stack-in .p-home .hero,
+  .p-home .footer {
+    animation: none;
+  }
+}
+
+/* while the folders come up, each one reaches down to the bottom of the
+   stack (like a whole folder), so no gaps show between them */
+html.stack-in .p-home .band::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: var(--ext, 0px);
+  background-color: var(--band);
+  pointer-events: none;
+}
+html.stack-done .p-home .band::after {
+  display: none;
+}
+
+/* like mosbyfiles.com: a tab does not grow when you point at it */
+.band-tabs .ftab:hover {
+  padding-top: 6px;
+}
+@media (max-width: 800px) {
+  .band-tabs .ftab:hover {
+    padding-top: 4px;
+  }
+}
+
+/* =========================================================
+   TWO BACKS
+   The back you see when you point at Education is the red folder's
+   back (::before). The blue folder has its own back (::after), on top of
+   it. Moving from Education to About Me, the blue back slides up over the
+   red one (with About Me); moving the other way it slides down again and
+   the red one shows. So the colour never just jumps.
+   ========================================================= */
+.band {
+  isolation: isolate;          /* the backs stay inside their folder */
+}
+.band-tabs::before {
+  z-index: -2;
+}
+.band-tabs::after {
+  content: "";
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  right: 0;
+  height: 13px;
+  z-index: -1;
+  border-radius: 12px 12px 0 0;
+  background-color: var(--band);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.16));
+  clip-path: inset(0 0 13px 0);
+  pointer-events: none;
+  transition: clip-path var(--fold-time) var(--fold-ease),
+              transform var(--fold-time) var(--fold-ease);
+}
+.band.lift-main .band-tabs::after {
+  transform: translateY(-12px) scaleX(0.984);
+  clip-path: inset(0 0 0 0);
+}
+.band.lift-main.pick-later .band-tabs::after {
+  clip-path: inset(13px 0 0 0);
+}
+
+/* =========================================================
+   TWO BACKS MOVE IN OPPOSITE DIRECTIONS (like mosbyfiles.com)
+   Each back is either UP (shows above the front) or DOWN (hidden behind
+   the front). It slides between the two; the part that is behind the
+   front is cut off as it goes (the cut moves with it), so moving from
+   Education to About Me the red back goes down while the blue back goes
+   up, at the same time.
+   ========================================================= */
+.stack .band .band-tabs::before,
+.stack .band .band-tabs::after {
+  transform: translateY(0) scaleX(1);
+  clip-path: inset(0 0 13px 0);
+}
+.stack .band.lift-main.pick-later .band-tabs::before,
+.stack .band.lift-main:not(.pick-later) .band-tabs::after {
+  transform: translateY(-12px) scaleX(0.984);
+  clip-path: inset(0 0 1px 0);
+}
+
+/* =========================================================
+   ONE PIECE: EVERY TAB AND THE BACK OF ITS FOLDER
+   The back (.tab-back, made by JavaScript) is part of the tab, as wide
+   as the folder. It shows only the part above the front of the folder:
+   12px when its tab stays on the back of an open folder, nothing
+   otherwise. The cut changes at the same speed as the tab moves, so the
+   back always reaches from the tab down to the front.
+   The first tab (About Me) is in front of the second (Education).
+   ========================================================= */
+.stack .band .band-tabs::before,
+.stack .band .band-tabs::after {
+  display: none;
+}
+.band-tabs .ftab {
+  --ov: 0px;                    /* how far the tab reaches into the front */
+  z-index: 1;
+}
+.band-tabs .ftab:first-child {
+  --ov: 3px;
+  z-index: 2;
+}
+.ftab .tab-back {
+  position: absolute;
+  left: var(--sx, 0px);
+  width: var(--sw, 100%);
+  top: calc(100% - var(--ov) - 1px);
+  height: 13px;
+  border-radius: 12px 12px 0 0;
+  background-color: var(--tab);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.16));
+  clip-path: inset(0 0 13px 0);
+  pointer-events: none;
+  transition: clip-path var(--fold-time) var(--fold-ease);
+}
+.band.lift-main .ftab.stay .tab-back {
+  clip-path: inset(0 0 1px 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ftab .tab-back {
+    display: none;
+  }
+}
+
+/* like mosbyfiles.com: only the folder itself gets wider when it opens;
+   the tabs on the folders in front move down with them but are not
+   stretched or pushed sideways (1 / 1.016 = 0.98425) */
+.band.lift .ftab,
+.band.lift-main .ftab:not(.stay) {
+  transform: scaleX(0.98425);
+}
+
+/* the back is drawn over both feet of its tab (the right foot was drawn
+   on top of it before, so it showed as a lighter bump) */
+.ftab .tab-back {
+  z-index: 1;
+}
+
+/* =========================================================
+   ONLY THE COLOUR OF A FOLDER GETS WIDER
+   The colour of each folder is its own layer (::before). When a folder
+   opens, only this layer gets 1.6% wider; the tabs and the words on the
+   folder only move down and are never stretched, so the browser keeps
+   drawing the words the same way and they do not jump.
+   ========================================================= */
+.stack .band {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.stack .band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-color: var(--band);
+  box-shadow: 0 -1px 0 var(--band);
+  transform-origin: 50% 0;
+  pointer-events: none;
+  transition: transform var(--fold-time) var(--fold-ease),
+              box-shadow var(--fold-time) var(--fold-ease);
+}
+.stack .band.lift::before,
+.stack .band.lift-main::before {
+  transform: scaleX(1.016);
+  box-shadow: 0 -1px 0 var(--band), 0 -5px 9px -3px rgba(42, 31, 16, 0.28);
+}
+.stack .band.lift,
+.stack .band.lift-main {
+  transform: translateY(12px);
+}
+.stack .band.lift-main .ftab.stay {
+  transform: translateY(-12px);
+}
+.stack .band.lift .ftab,
+.stack .band.lift-main .ftab:not(.stay) {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stack .band.lift::before,
+  .stack .band.lift-main::before {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   FRONT FOLDER LEANS LIKE ONE PIECE (like mosbyfiles.com)
+   When the stack opens, the colour of the front folder (the last band
+   and the footer below it) leans back a little: it is a bit wider at
+   the top than at the bottom, with one straight edge on each side.
+   Both parts lean around the same point (the top of the front folder,
+   --ft is set by JavaScript), so they stay one flat piece.
+   Only the colour leans; the words stay straight.
+   ========================================================= */
+body.p-home .footer {
+  background-color: transparent;
+}
+body.p-home .footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--c-more);
+  transform-origin: 50% calc(-1 * var(--ft, 0px));
+  pointer-events: none;
+  transition: transform var(--fold-time) var(--fold-ease);
+}
+body.p-home .footer.lift {
+  transform: translateY(12px);
+}
+.stack .band:last-child.lift::before,
+.stack .band:last-child.lift-main::before,
+body.p-home .footer.lift::before {
+  transform: perspective(1600px) rotateX(-3deg) scaleX(1.016);
+}
+@media (prefers-reduced-motion: reduce) {
+  body.p-home .footer.lift,
+  body.p-home .footer.lift::before {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   VINTAGE ARCHIVE ON WARM CREAM
+   ========================================================= */
+/* the footer on the home page is the bottom of the More folder */
+body.p-home .footer,
+body.p-home .footer a {
+  color: var(--on-color);
+}
+
+/* =========================================================
+   HOME: A WIDE STACK, A LITTLE SMALLER THAN MOSBYFILES.COM
+   The folders follow the width of the window, with 9% of the window
+   left on each side (Mosby leaves about 6.5%). Tabs and words are a
+   little bigger, and there is more room under the title.
+   ========================================================= */
+@media (min-width: 801px) {
+  .p-home .stack {
+    max-width: none;
+    padding: 0 max(32px, 9vw);
+  }
+  .p-home .footer {
+    width: calc(100% - 2 * max(32px, 9vw));
+    max-width: none;
+  }
+  .p-home .hero.center {
+    padding-bottom: clamp(90px, 10vh, 150px);
+  }
+  .p-home .ftab {
+    font-size: 1.6rem;
+  }
+  .p-home .band-head {
+    font-size: 0.92rem;
+    padding-top: 32px;
+  }
+}
+
+/* =========================================================
+   FILE PAGES: AS WIDE AS THE HOME PAGE
+   9% of the window on the left; on the right 9% too, but never less
+   than 180px, so the side tabs never go under the "Next" button
+   ========================================================= */
+@media (min-width: 1101px) {
+  .hero {
+    padding-left: max(32px, 9vw);
+    padding-right: max(32px, 9vw);
+  }
+  .stage {
+    padding: 0 max(180px, 9vw) 0 max(32px, 9vw);
+  }
+  .folder {
+    width: calc(100% - 42px);       /* room for the side tabs */
+    max-width: none;
+  }
+  .next-folder {
+    width: calc(100% - max(32px, 9vw) - max(180px, 9vw) - 42px);
+    max-width: none;
+    margin-left: max(32px, 9vw);
+  }
+}
+@media (min-width: 1101px) {
+  /* on a wide window the text column stops at a comfortable reading width */
+  .sheet-grid {
+    grid-template-columns: 300px minmax(0, 980px);
+  }
+}
+
+
+/* room under the front folder for it to move down when it opens, so the
+   page does not get taller (a scroll bar would appear and the page would
+   jump sideways) */
+body.p-home {
+  padding-bottom: 16px;
+}
+
+/* The back of the first tab (About Me) reaches 1px lower, right down to
+   the front of the folder, so the bottom edge of the back behind it
+   (Education, red) can not show as a thin dark line. That last 1px has
+   no shade, so when the folder is closed it is the same colour as the
+   folder and can not be seen. */
+.band-tabs .ftab:first-child .tab-back {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.16) calc(100% - 1px), transparent calc(100% - 1px));
+  clip-path: inset(0 0 12px 0);
+}
+.band.lift-main .band-tabs .ftab:first-child.stay .tab-back {
+  clip-path: inset(0 0 0 0);
+}
+
+/* the folder labels ("Who I am" etc.) are buttons: no box around the
+   whole folder after a mouse click; a clear ring only for the keyboard */
+.band-head:focus {
+  outline: none;
+}
+.band-head:focus-visible .arrow,
+.band-head:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* =========================================================
+   THE COPY OF THE PICKED FOLDER IS OPEN (like mosbyfiles.com)
+   When a tab is clicked the folder stays open while it falls: the back
+   (with the tab on it) shows above the front, and the front is a little
+   wider than the back, the same as when the mouse points at it.
+   ========================================================= */
+.fly-folder .fly-back,
+.fly-folder .fly-front {
+  position: absolute;
+  display: block;
+  border-radius: 12px 12px 0 0;
+  background-color: var(--fly);
+  pointer-events: none;
+}
+.fly-folder .fly-back {
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 14px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.16));
+}
+.fly-folder .fly-front {
+  left: -0.8%;                  /* 1.6% wider, the same as an open folder */
+  right: -0.8%;
+  top: 12px;
+  bottom: 0;
+  box-shadow: 0 -5px 9px -3px rgba(42, 31, 16, 0.28);
+}
+.fly-folder .fly-tab {
+  z-index: 2;
+}
+
+/* the paper inside the copy of the folder: it peeks out above the front
+   while the folder turns, so the file looks as if it opens */
+.fly-folder .fly-paper {
+  position: absolute;
+  display: block;
+  left: 2.5%;
+  right: 2.5%;
+  top: 12px;
+  height: 40px;
+  border-radius: 3px 3px 0 0;
+  background-color: var(--paper);
+  box-shadow: 0 -1px 2px rgba(42, 31, 16, 0.18);
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1) 0.15s;
+}
+.fly-folder.tip .fly-paper {
+  transform: translateY(-10px);
 }

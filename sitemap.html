@@ -3,86 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
-<title>Site Map | Chan Kai Yip Nelson</title>
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CIS222">
+<meta name="description" content="Nelson's Files - the e-portfolio of Chan Kai Yip Nelson">
+<title>Site Map | Nelson's Files</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 <script src="js/main.js"></script>
 </head>
-<body class="folder-kraft">
+<body class="p-map">
+<div id="progress"></div>
 
-<!-- Header -->
-<div class="header">
-  <span class="stamp">Case No. S25201381</span>
-  <p class="kicker">Nelson's Files &middot; File 07</p>
+<!-- Top bar -->
+<header class="topbar">
+  <span class="page-name">Site Map</span>
+  <a class="brand" href="index.html">Nelson's Files</a>
+  <div class="links">
+    <a class="hide-sm" href="index.html">Home</a>
+    <a href="sitemap.html">Site map</a>
+    <button id="themeBtn" onclick="toggleTheme()">Blueprint</button>
+  </div>
+</header>
+
+<!-- Title -->
+<section class="hero">
   <h1>Site Map</h1>
-  <p>All pages of this website</p>
-</div>
+  <p>The index of every file in this archive.</p>
+</section>
 
-<!-- Navigation bar -->
-<div class="navbar">
-  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
-  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
-  <ul id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="personal.html">About Me</a></li>
-    <li><a href="experience.html">Experience</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="other.html">More</a></li>
-    <li><a href="sitemap.html" class="current">Site Map</a></li>
-    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
-  </ul>
-</div>
-
-<div class="container">
+<!-- The folder -->
+<div class="stage">
   <div class="folder">
-    <div class="folder-label">File 07 / Site Map</div>
+    <div class="cover"><span class="cover-label">File 07</span></div>
 
-  <div class="section sitemap">
-    <h2>Site Map</h2>
-    <ul>
-      <li><i class="fas fa-home"></i> <a href="index.html">Home</a> &ndash; welcome page
-        <ul>
-          <li><i class="fas fa-id-card"></i> <a href="personal.html">About Me</a> &ndash; personal information, self introduction, career objective</li>
-          <li><i class="fas fa-briefcase"></i> <a href="experience.html">Experience</a> &ndash; working experience and course projects</li>
-          <li><i class="fas fa-graduation-cap"></i> <a href="education.html">Education</a> &ndash; education background and current courses</li>
-          <li><i class="fas fa-laptop-code"></i> <a href="skills.html">Skills</a> &ndash; technical skills, soft skills and languages</li>
-          <li><i class="fas fa-folder-open"></i> <a href="projects.html">Projects</a> &ndash; live demos of my course work
-            <ul>
-              <li><a href="projects/tutorial3/index.html" target="_blank">Layout Webpage</a></li>
-              <li><a href="projects/tutorial4/index.html" target="_blank">Student Registration Form</a></li>
-              <li><a href="projects/tutorial5/index.html" target="_blank">TechCorp Company Page</a></li>
-              <li><a href="projects/tutorial6/index.html" target="_blank">CSS Buttons</a></li>
-              <li><a href="projects/tutorial7/l7q1.html" target="_blank">JavaScript Exercises</a></li>
-              <li><a href="projects/tutorial8/email.html" target="_blank">Passing Values between Pages</a></li>
-              <li><a href="projects/project6a/index.html" target="_blank">Contact Form</a></li>
-            </ul>
-          </li>
-          <li><i class="fas fa-gamepad"></i> <a href="other.html">More</a> &ndash; hobbies, fun facts and contact form
-            <ul>
-              <li><i class="fas fa-envelope"></i> <a href="other.html#contact">Contact Me</a></li>
-              <li><i class="fas fa-check-circle"></i> <a href="thankyou.html">Thank You</a> &ndash; shown after sending a message</li>
-            </ul>
-          </li>
-          <li><i class="fas fa-sitemap"></i> <a href="sitemap.html">Site Map</a> &ndash; this page</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+    <!-- Notebook sheet -->
+    <div class="sheet">
+      <div class="sheet-grid">
+        <div class="col-left">
+          <dl class="facts">
+            <dt>Files</dt><dd>9 pages</dd>
+            <dt>Demos</dt><dd>6 projects + 7 exercises</dd>
+            <dt>Order</dt><dd>Follow the tabs on the right, or keep scrolling at the end of each page</dd>
+          </dl>
+        </div>
+        <div class="col-right">
+          <ul class="map-list">
+            <li><a href="index.html">Home</a> <span>&mdash; the stack of folders</span>
+              <ul>
+                <li><a href="personal.html">About Me</a> <span>&mdash; key facts, career objective, Word profile, audio introduction</span></li>
+                <li><a href="experience.html">Experience</a> <span>&mdash; jobs and course projects</span></li>
+                <li><a href="education.html">Education</a> <span>&mdash; schools and current courses</span></li>
+                <li><a href="skills.html">Skills</a> <span>&mdash; skill bars and JavaScript tools</span></li>
+                <li><a href="projects.html">Projects</a> <span>&mdash; live demos of my course work</span>
+                  <ul>
+                    <li><a href="projects/tutorial3/index.html" target="_blank">Layout webpage</a></li>
+                    <li><a href="projects/tutorial4/index.html" target="_blank">Registration form</a></li>
+                    <li><a href="projects/tutorial5/index.html" target="_blank">TechCorp page</a></li>
+                    <li><a href="projects/tutorial6/index.html" target="_blank">CSS buttons</a></li>
+                    <li><a href="projects/project6a/index.html" target="_blank">Contact form</a></li>
+                    <li><a href="projects/tutorial8/email.html" target="_blank">Passing values</a></li>
+                    <li><a href="projects/tutorial7/l7q1.html" target="_blank">JavaScript exercises</a></li>
+                  </ul>
+                </li>
+                <li><a href="other.html">More</a> <span>&mdash; hobbies, fun facts and the contact form</span>
+                  <ul>
+                    <li><a href="thankyou.html">Thank you</a> <span>&mdash; shown after you send a message</span></li>
+                  </ul>
+                </li>
+                <li><a href="sitemap.html">Site Map</a> <span>&mdash; this page</span></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="rule">
+    </div>
 
+    <!-- Scrapbook: notes and photos you can drag -->
+    <div class="scrapbook" style="--h:300px;">
+    <div class="scrap" style="--x:55%; --y:0px; --w:380px; --r:1.5deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note paper">
+          <h3>How this archive works</h3>
+          <p>Every page is a folder. The tabs on the right edge open the other folders. At the end of a page, keep scrolling to open the next one.</p>
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 
-<!-- Back to top button -->
-<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8593;</button>
 
-<!-- Footer -->
-<div class="footer">
-  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
-  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+<footer class="footer">
+  <div class="compasses" aria-hidden="true">
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="27" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 10 L33 34 L25 29 L17 34 Z" fill="currentColor"/><text x="38" y="12" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 38 L38 12" stroke="currentColor" stroke-width="2"/><path d="M38 12 L30 14 L36 20 Z" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><path d="M10 44 L38 10" stroke="currentColor" stroke-width="1.5"/><path d="M38 10 L28 16 L35 21 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="38" y="22" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 12 L38 38 M38 12 L12 38" stroke="currentColor" stroke-width="1"/><path d="M14 20 h22 M14 25 h22 M14 30 h22" stroke="currentColor" stroke-width="0.8"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="28" r="18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 28 L32 10" stroke="currentColor" stroke-width="3"/><text x="34" y="9" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><path d="M18 46 L34 4" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L39 34 L11 34 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L25 34" stroke="currentColor"/></svg>
 </div>
+  <div class="footer-row">
+    <div class="scale-bar"><svg viewBox="0 0 130 26" aria-hidden="true"><rect x="0" y="2" width="8" height="4" fill="currentColor"/><rect x="8" y="6" width="8" height="4" fill="currentColor"/><rect x="16" y="2" width="16" height="4" fill="currentColor"/><rect x="32" y="6" width="64" height="4" fill="currentColor"/><text x="0" y="22" fill="currentColor" font-size="8" font-family="monospace">0  4  8   16          32 m</text></svg></div>
+    <div>&copy; <span id="year"></span> Chan Kai Yip Nelson</div>
+    <div>Made for CIS222 / CIS282 &middot; <a href="sitemap.html">Site map</a></div>
+  </div>
+</footer>
 
 </body>
 </html>

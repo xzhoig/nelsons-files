@@ -3,109 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CV">
-<title>My Projects | Chan Kai Yip Nelson</title>
+<meta name="keywords" content="Chan Kai Yip Nelson, e-portfolio, web designer, CIS222">
+<meta name="description" content="Nelson's Files - the e-portfolio of Chan Kai Yip Nelson">
+<title>Projects | Nelson's Files</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 <script src="js/main.js"></script>
 </head>
-<body class="folder-green">
+<body class="p-projects">
+<div id="progress"></div>
 
-<!-- Header -->
-<div class="header">
-  <span class="stamp">Case No. S25201381</span>
-  <p class="kicker">Nelson's Files &middot; File 05</p>
-  <h1>My Projects</h1>
-  <p>Live demos of my course work</p>
-</div>
+<!-- Top bar -->
+<header class="topbar">
+  <span class="page-name">Projects</span>
+  <a class="brand" href="index.html">Nelson's Files</a>
+  <div class="links">
+    <a class="hide-sm" href="index.html">Home</a>
+    <a href="sitemap.html">Site map</a>
+    <button id="themeBtn" onclick="toggleTheme()">Blueprint</button>
+  </div>
+</header>
 
-<!-- Navigation bar -->
-<div class="navbar">
-  <span class="logo mono"><i class="fas fa-archive"></i> NELSON'S FILES</span>
-  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
-  <ul id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="personal.html">About Me</a></li>
-    <li><a href="experience.html">Experience</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html" class="current">Projects</a></li>
-    <li><a href="other.html">More</a></li>
-    <li><a href="sitemap.html">Site Map</a></li>
-    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Blueprint mode</button></li>
-  </ul>
-</div>
+<!-- Title -->
+<section class="hero">
+  <h1>Projects</h1>
+  <p>Live demos of the web pages I built in CIS222. Pick them up, move them around, open them.</p>
+</section>
 
-<div class="container">
+<!-- The folder -->
+<div class="stage">
   <div class="folder">
-    <div class="folder-label">File 05 / My Projects</div>
+    <div class="cover"><span class="cover-label">File 05</span></div>
 
-  <div class="section">
-    <h2>My Projects</h2>
-    <p>These are web pages I built in the CIS222 course. Click a button to open the live demo in a new tab.</p>
-    <div class="cards">
-      <div class="card project-card">
-        <img class="clip-photo" src="images/projects/layout_webpage.jpg" alt="Screenshot of Layout Webpage">
-        <h3>Layout Webpage</h3>
-        <span class="tag">HTML</span><span class="tag">CSS</span>
-        <p>A page layout with a banner image, navigation menu, self introduction and footer, built with div and flexbox.</p>
-        <a class="button" href="projects/tutorial3/index.html" target="_blank">Open demo</a>
+    <!-- Notebook sheet -->
+    <div class="sheet">
+      <div class="sheet-grid">
+        <div class="col-left">
+          <dl class="facts">
+            <dt>Demos</dt><dd>6 web pages + 7 JavaScript exercises</dd>
+            <dt>Built with</dt><dd>HTML, CSS and JavaScript</dd>
+            <dt>Course</dt><dd>CIS222 Web Design and Development</dd>
+            <dt>Editor</dt><dd>Notepad++</dd>
+          </dl>
+        </div>
+        <div class="col-right">
+          <p class="dropcap">Each project below was a weekly exercise. Together they show how my skills grew: from plain HTML pages, to styled layouts, to forms that check what the user types.</p>
+          <h2>JavaScript exercises</h2>
+          <p>Seven small programs using prompt, if-else, for loops, functions and onclick events.</p>
+          <a class="button" href="projects/tutorial7/l7q1.html" target="_blank">Q1 Calculator</a> <a class="button" href="projects/tutorial7/l7q2.html" target="_blank">Q2 Sum 1 to n</a> <a class="button" href="projects/tutorial7/l7q3.html" target="_blank">Q3 Age</a> <a class="button" href="projects/tutorial7/l7q4.html" target="_blank">Q4 Leap year</a> <a class="button" href="projects/tutorial7/l7q5_a.html" target="_blank">Q5a onclick</a> <a class="button" href="projects/tutorial7/l7q5_b.html" target="_blank">Q5b Colours</a> <a class="button" href="projects/tutorial7/l7q6.html" target="_blank">Q6 Dropdown</a>
+          <p style="font-family:var(--f-mono); font-size:0.85rem; margin-top:18px;">Tip: drag the notes and photos below like a real scrapbook.</p>
+        </div>
       </div>
-      <div class="card project-card">
-        <img class="clip-photo" src="images/projects/student_registration_form.jpg" alt="Screenshot of Student Registration Form">
-        <h3>Student Registration Form</h3>
-        <span class="tag">HTML form</span><span class="tag">CSS</span>
-        <p>A registration form with text fields, drop-down menu, radio buttons, phone number and password, styled with my own CSS.</p>
-        <a class="button" href="projects/tutorial4/index.html" target="_blank">Open demo</a>
-      </div>
-      <div class="card project-card">
-        <img class="clip-photo" src="images/projects/techcorp_company_page.jpg" alt="Screenshot of TechCorp Company Page">
-        <h3>TechCorp Company Page</h3>
-        <span class="tag">HTML</span><span class="tag">CSS</span>
-        <p>A company home page with a sticky navigation bar, hero section, service list and account registration form.</p>
-        <a class="button" href="projects/tutorial5/index.html" target="_blank">Open demo</a>
-      </div>
-      <div class="card project-card">
-        <img class="clip-photo" src="images/projects/css_buttons.jpg" alt="Screenshot of CSS Buttons">
-        <h3>CSS Buttons</h3>
-        <span class="tag">CSS</span><span class="tag">JavaScript</span>
-        <p>Buttons with hover, focus and active states. Click the buttons to change the text, the picture and the background colour.</p>
-        <a class="button" href="projects/tutorial6/index.html" target="_blank">Open demo</a>
-      </div>
-      <div class="card project-card">
-        <img class="clip-photo" src="images/projects/contact_form.jpg" alt="Screenshot of Contact Form">
-        <h3>Contact Form</h3>
-        <span class="tag">HTML form</span>
-        <p>A contact form where every field is required and the e-mail and telephone number must be in the correct format.</p>
-        <a class="button" href="projects/project6a/index.html" target="_blank">Open demo</a>
-      </div>
-      <div class="card project-card">
-        <img class="clip-photo" src="images/projects/passing_values_between_pages.jpg" alt="Screenshot of Passing Values between Pages">
-        <h3>Passing Values between Pages</h3>
-        <span class="tag">JavaScript</span><span class="tag">sessionStorage</span>
-        <p>A registration form that checks the e-mail and password, then shows all the data on another page.</p>
-        <a class="button" href="projects/tutorial8/email.html" target="_blank">Open demo</a>
+      <hr class="rule">
+    </div>
+
+    <!-- Scrapbook: notes and photos you can drag -->
+    <div class="scrapbook" style="--h:2600px;">
+    <div class="scrap" style="--x:2%; --y:0px; --w:480px; --r:-0.8deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note pink">
+          <h3>Layout webpage (Tutorial 3)</h3>
+          <p>A page layout with a banner image, a navigation menu, a self-introduction and a footer, built with div and flexbox.</p>
+          <a class="button" href="projects/tutorial3/index.html" target="_blank">Open demo</a>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="section">
-    <h2>JavaScript Exercises</h2>
-    <p>Seven small programs using prompt, if-else, for loops, functions and onclick events.</p>
-    <a class="button" href="projects/tutorial7/l7q1.html" target="_blank">Q1 Calculator</a> <a class="button" href="projects/tutorial7/l7q2.html" target="_blank">Q2 Sum 1 to n</a> <a class="button" href="projects/tutorial7/l7q3.html" target="_blank">Q3 Age</a> <a class="button" href="projects/tutorial7/l7q4.html" target="_blank">Q4 Leap year</a> <a class="button" href="projects/tutorial7/l7q5_a.html" target="_blank">Q5a onclick</a> <a class="button" href="projects/tutorial7/l7q5_b.html" target="_blank">Q5b Colours</a> <a class="button" href="projects/tutorial7/l7q6.html" target="_blank">Q6 Dropdown</a>
-  </div>
-
+    <div class="scrap" style="--x:9%; --y:250px; --w:430px; --r:1.2800000000000002deg; --z:6;">
+      <div class="scrap-inner">
+        <figure class="photo">
+          <svg class="clip" style="top:-24px; right:24px;" viewBox="0 0 30 84" aria-hidden="true"><path d="M11 74 V20 a8 8 0 0 1 16 0 V64 a12 12 0 0 1 -24 0 V12" fill="none" stroke="#2b2b2b" stroke-width="2.3" stroke-linecap="round"/></svg>
+          <img src="images/projects/layout_webpage.jpg" alt="Screenshot of Layout webpage (Tutorial 3)">
+          <figcaption>Banner, menu, content, footer</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="scrap" style="--x:50%; --y:380px; --w:480px; --r:1.1deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note yellow">
+          <h3>Registration form (Tutorial 4)</h3>
+          <p>A student registration form with text fields, a drop-down menu, radio buttons, phone number and password, styled with my own CSS.</p>
+          <a class="button" href="projects/tutorial4/index.html" target="_blank">Open demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="scrap" style="--x:47%; --y:630px; --w:430px; --r:-1.7600000000000002deg; --z:6;">
+      <div class="scrap-inner">
+        <figure class="photo torn">
+          
+          <img src="images/projects/student_registration_form.jpg" alt="Screenshot of Registration form (Tutorial 4)">
+          <figcaption>Form styled with CSS</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="scrap" style="--x:4%; --y:800px; --w:480px; --r:0.7deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note blue">
+          <h3>TechCorp page (Tutorial 5)</h3>
+          <p>A company home page with a sticky navigation bar, a hero section, a list of services and an account registration form.</p>
+          <a class="button" href="projects/tutorial5/index.html" target="_blank">Open demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="scrap" style="--x:11%; --y:1050px; --w:430px; --r:-1.1199999999999999deg; --z:6;">
+      <div class="scrap-inner">
+        <figure class="photo">
+          <svg class="clip" style="top:-24px; right:24px;" viewBox="0 0 30 84" aria-hidden="true"><path d="M11 74 V20 a8 8 0 0 1 16 0 V64 a12 12 0 0 1 -24 0 V12" fill="none" stroke="#2b2b2b" stroke-width="2.3" stroke-linecap="round"/></svg>
+          <img src="images/projects/techcorp_company_page.jpg" alt="Screenshot of TechCorp page (Tutorial 5)">
+          <figcaption>Company home page</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="scrap" style="--x:52%; --y:1180px; --w:480px; --r:-1.2deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note green">
+          <h3>CSS buttons (Tutorial 6)</h3>
+          <p>Buttons with hover, focus and active states. Click them to change the text, the picture and the background colour.</p>
+          <a class="button" href="projects/tutorial6/index.html" target="_blank">Open demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="scrap" style="--x:49%; --y:1430px; --w:430px; --r:1.92deg; --z:6;">
+      <div class="scrap-inner">
+        <figure class="photo torn">
+          
+          <img src="images/projects/css_buttons.jpg" alt="Screenshot of CSS buttons (Tutorial 6)">
+          <figcaption>Button states and onclick</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="scrap" style="--x:3%; --y:1580px; --w:480px; --r:1deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note pink">
+          <h3>Contact form (Project 6a)</h3>
+          <p>Every field is required, and the e-mail address and telephone number must be in the right format.</p>
+          <a class="button" href="projects/project6a/index.html" target="_blank">Open demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="scrap" style="--x:10%; --y:1830px; --w:430px; --r:-1.6deg; --z:6;">
+      <div class="scrap-inner">
+        <figure class="photo">
+          <svg class="clip" style="top:-24px; right:24px;" viewBox="0 0 30 84" aria-hidden="true"><path d="M11 74 V20 a8 8 0 0 1 16 0 V64 a12 12 0 0 1 -24 0 V12" fill="none" stroke="#2b2b2b" stroke-width="2.3" stroke-linecap="round"/></svg>
+          <img src="images/projects/contact_form.jpg" alt="Screenshot of Contact form (Project 6a)">
+          <figcaption>Required fields and patterns</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="scrap" style="--x:51%; --y:1960px; --w:480px; --r:-0.6deg; --z:5;">
+      <div class="scrap-inner">
+        <div class="note yellow">
+          <h3>Passing values (Tutorial 8)</h3>
+          <p>A registration form that checks the e-mail and password, then shows all the data on another page with sessionStorage.</p>
+          <a class="button" href="projects/tutorial8/email.html" target="_blank">Open demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="scrap" style="--x:48%; --y:2210px; --w:430px; --r:0.96deg; --z:6;">
+      <div class="scrap-inner">
+        <figure class="photo torn">
+          
+          <img src="images/projects/passing_values_between_pages.jpg" alt="Screenshot of Passing values (Tutorial 8)">
+          <figcaption>sessionStorage</figcaption>
+        </figure>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 
-<!-- Back to top button -->
-<button id="topBtn" onclick="backToTop()" title="Back to top">&#8679;</button>
+<button id="topBtn" onclick="backToTop()" title="Back to top">&#8593;</button>
 
-<!-- Footer -->
-<div class="footer">
-  <p>&copy; <span id="year"></span> Chan Kai Yip Nelson &middot; Nelson's Files &middot; CIS222 / CIS282 e-Portfolio</p>
-  <p><a href="index.html">Home</a> | <a href="sitemap.html">Site Map</a> | <a href="other.html#contact">Contact Me</a></p>
+<footer class="footer">
+  <div class="compasses" aria-hidden="true">
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="27" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 10 L33 34 L25 29 L17 34 Z" fill="currentColor"/><text x="38" y="12" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 38 L38 12" stroke="currentColor" stroke-width="2"/><path d="M38 12 L30 14 L36 20 Z" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><path d="M10 44 L38 10" stroke="currentColor" stroke-width="1.5"/><path d="M38 10 L28 16 L35 21 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="38" y="22" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 12 L38 38 M38 12 L12 38" stroke="currentColor" stroke-width="1"/><path d="M14 20 h22 M14 25 h22 M14 30 h22" stroke="currentColor" stroke-width="0.8"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="28" r="18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 28 L32 10" stroke="currentColor" stroke-width="3"/><text x="34" y="9" fill="currentColor" font-size="11" font-family="monospace">N</text></svg>
+  <svg viewBox="0 0 50 50"><path d="M18 46 L34 4" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="26" cy="25" r="3" fill="currentColor"/></svg>
+  <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L39 34 L11 34 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M25 8 L25 34" stroke="currentColor"/></svg>
 </div>
+  <div class="footer-row">
+    <div class="scale-bar"><svg viewBox="0 0 130 26" aria-hidden="true"><rect x="0" y="2" width="8" height="4" fill="currentColor"/><rect x="8" y="6" width="8" height="4" fill="currentColor"/><rect x="16" y="2" width="16" height="4" fill="currentColor"/><rect x="32" y="6" width="64" height="4" fill="currentColor"/><text x="0" y="22" fill="currentColor" font-size="8" font-family="monospace">0  4  8   16          32 m</text></svg></div>
+    <div>&copy; <span id="year"></span> Chan Kai Yip Nelson</div>
+    <div>Made for CIS222 / CIS282 &middot; <a href="sitemap.html">Site map</a></div>
+  </div>
+</footer>
 
 </body>
 </html>
