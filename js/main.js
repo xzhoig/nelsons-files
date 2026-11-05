@@ -841,8 +841,12 @@ function motionLoop() {
   // the big title floats up and fades as you scroll away
   var hero = document.querySelector(".hero");
   if (hero && y < vh) {
-    hero.style.transform = "translateY(" + (y * 0.35).toFixed(1) + "px)";
-    hero.style.opacity = Math.max(0, 1 - y / (vh * 0.7)).toFixed(3);
+    // on a phone the title moves less (the folders are close below it)
+    // and fades out sooner, so it is gone before it reaches the top bar
+    var phone = window.innerWidth <= 800;
+    hero.style.transform = "translateY(" + (y * (phone ? 0.15 : 0.35)).toFixed(1) + "px)";
+    var fadeEnd = phone ? 220 : vh * 0.7;
+    hero.style.opacity = Math.max(0, 1 - y / fadeEnd).toFixed(3);
   }
 
   // the next folder rises into place

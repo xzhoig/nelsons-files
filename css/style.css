@@ -2441,3 +2441,36 @@ body.p-home {
 .fly-folder.tip .fly-paper {
   transform: translateY(-10px);
 }
+
+/* =========================================================
+   PHONES: FIXES (version 4.9)
+   ========================================================= */
+@media (max-width: 800px) {
+  /* 1. the folders are one stack, like on a computer: the tabs of each
+     folder sit on the folder behind it (not on the page between them).
+     The words on each folder sit higher, so the tabs do not cover them. */
+  .p-home .band {
+    margin-top: -6px;
+  }
+  .p-home .band-head {
+    padding-top: 22px;
+    padding-bottom: 50px;
+  }
+  /* 2. less empty space between the text and the folders */
+  .p-home .hero.center {
+    padding-top: 116px;
+    padding-bottom: 64px;
+  }
+  /* 3. a smaller Next button, so it covers less of the page */
+  .next-pill {
+    right: 12px;
+    bottom: 12px;
+  }
+  .next-pill .pill {
+    min-width: 0;
+    padding: 10px 16px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 14px rgba(42, 31, 16, 0.18);
+  }
+}
